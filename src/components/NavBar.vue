@@ -8,7 +8,7 @@
         <el-menu-item index="1" class="item"><el-avatar></el-avatar>专属课程</el-menu-item>
         <el-menu-item index="2" class="item"><el-avatar></el-avatar>活动报名</el-menu-item>
         <el-menu-item index="3" class="item"><el-avatar></el-avatar>个人中心</el-menu-item>
-        <el-menu-item index="4" class="input"><el-input placehoder="搜索关键字"></el-input></el-menu-item>
+        <el-menu-item index="4" class="input" disabled><el-input placehoder="搜索关键字"></el-input></el-menu-item>
     </el-menu>
 </template>
 
