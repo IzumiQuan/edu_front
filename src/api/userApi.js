@@ -1,16 +1,17 @@
-import request from "@/utils/request";
+import request from "@/utils/request"
+let baseUrl = "http://localhost:8080/api/user"
 export async function login(data) {
-    return await request.post("http://localhost:90/edu/user/login", data);
+    return await request.post(baseUrl + "/login", data)
 }
 
 export async function remove(data) {
-    return await request.post("http://localhost:90/edu/user/remove?id=" + data);
+    return await request.post(baseUrl + "/remove?id=" + data)
 }
 
 export async function set(data) {
-    return await request.post("http://localhost:90/edu/user/set", data);
+    return await request.post(baseUrl + "/set", data)
 }
 
 export async function query(data) {
-    return await request.post("http://localhost:90/edu/user/query", data);
+    return await request.post(baseUrl + "/query", data)
 }
