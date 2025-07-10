@@ -98,8 +98,8 @@ async function handleGetAvatar(){
             <el-input placeholder="请输入密码" v-model="user.pwd" type="password" clearable show-password class="input" />
             <el-checkbox label="同意用户协议" v-model="checked" class="checkbox" />
             <el-buttton-group class="group">
-                <el-button color="black" size="large" @click.prevent="handleLogin" class="btn">登录</el-button>
-                <el-button color="black" size="large" @click.prevent="handleRegist" class="btn">注册</el-button>
+                <el-button type="primary" color="black" size="large" @click.prevent="handleLogin" class="btn">登录</el-button>
+                <el-button type="primary" color="black" size="large" @click.prevent="handleRegist" class="btn">注册</el-button>
             </el-buttton-group>
         </div>
     </div>
