@@ -10,9 +10,9 @@ const router = createRouter({
       component: () => import('../views/Home.vue'),
       children: [
         {
-          path: '/class',
-          name: 'class',
-          component: () => import('../views/Class.vue'),
+          path: '/course',
+          name: 'course',
+          component: () => import('../views/Course.vue'),
           meta: {
             title: '课程',//页面标题
           },
@@ -26,12 +26,19 @@ const router = createRouter({
           },
         },
         {
-          path: '/info',
-          name: 'info',
-          component: () => import('../views/Info.vue'),
-          meta: {
-            title: '个人中心',
+          path: '/user',
+          name: 'user',
+          component: () => import('../views/User.vue'),
+          children: [
+            {
+              path: '/user/info',
+              name: 'info',
+              component: () => import('../views/Info.vue'),
+              meta: {
+                title: '个人中心',
           },
+            },
+          ]
         },
       ],
     },
@@ -43,6 +50,7 @@ const router = createRouter({
         title: '登录',
       },
     },
+    
   ],
 })
 router.beforeEach((to, from, next) => {
