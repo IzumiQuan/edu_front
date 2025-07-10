@@ -1,5 +1,6 @@
 <script setup>
-
+import { ref } from 'vue'
+let keyword = ref('')
 </script>
 
 <template>
@@ -8,7 +9,7 @@
         <el-menu-item index="1" class="item"><el-avatar></el-avatar>专属课程</el-menu-item>
         <el-menu-item index="2" class="item"><el-avatar></el-avatar>活动报名</el-menu-item>
         <el-menu-item index="3" class="item"><el-avatar></el-avatar>个人中心</el-menu-item>
-        <el-menu-item index="4" class="input" disabled><el-input placehoder="搜索关键字"></el-input></el-menu-item>
+        <el-menu-item index="4" class="input" disabled><el-input placehoder="搜索关键字" v-model="keyword"></el-input></el-menu-item>
     </el-menu>
 </template>
 
@@ -27,8 +28,12 @@
         font-size: 20px;
         font-weight: 900;
     }
+    .item:nth-child(4) {
+        margin-right: auto;
+    }
     .navbar .input {
         opacity: 1;
         cursor: default;
+        --el-menu-item-height: 20px;
     }
 </style>
