@@ -26,6 +26,14 @@ const router = createRouter({
           },
         },
         {
+          path: '/activity/:id',
+          name: 'aDetail',
+          component: () => import('../views/ActivityDetail.vue'),
+          meta: {
+            title: '活动',
+          },
+        },
+        {
           path: '/user',
           name: 'user',
           component: () => import('../views/User.vue'),
@@ -48,6 +56,14 @@ const router = createRouter({
       component: () => import('../views/Login.vue'),
       meta: {
         title: '登录',
+      },
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../components/PaymentDialog.vue'),
+      meta: {
+        title: '测试',
       },
     },
   ],
