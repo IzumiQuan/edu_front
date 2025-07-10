@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import router from '@/router';
 let emit = defineEmits(['message'])
 let keyword = ref('')
 function search() {
@@ -8,18 +9,18 @@ function search() {
 </script>
 
 <template>
-    <el-menu mode="horizontal" class="navbar">
-        <el-menu-item index="0" class="item disabled" disabled>在线学习平台</el-menu-item>
-        <el-menu-item index="1" class="item"><el-avatar></el-avatar>专属课程</el-menu-item>
-        <el-menu-item index="2" class="item"><el-avatar></el-avatar>活动报名</el-menu-item>
-        <el-menu-item index="3" class="input disabled" disabled>
+    <el-menu mode="horizontal" router :default-active="$route.path" class="navbar">
+        <el-menu-item index="/" class="item disabled" disabled>在线学习平台</el-menu-item>
+        <el-menu-item index="/course" class="item"><el-avatar></el-avatar>专属课程</el-menu-item>
+        <el-menu-item index="/activity" class="item"><el-avatar></el-avatar>活动报名</el-menu-item>
+        <el-menu-item index="/" class="input disabled" disabled>
             <el-input placehoder="搜索关键字" v-model="keyword" @change="search">
                 <template #prepend>
                     <el-image style="display: flex;" fit="fill" src="https://cdn8.axureshop.com/demo2025/2328743/images/%E7%BB%A7%E7%BB%AD%E6%95%99%E8%82%B2/u285.svg"></el-image>
                 </template>
             </el-input>
         </el-menu-item>
-        <el-menu-item index="4" class="disabled" disabled>
+        <el-menu-item index="/" class="disabled" disabled>
             <el-dropdown>
                 <div class="ddl" style="">
                     <el-avatar></el-avatar>
@@ -28,8 +29,8 @@ function search() {
                 </div>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>个人中心</el-dropdown-item>
-                        <el-dropdown-item>退出登录</el-dropdown-item>
+                        <el-dropdown-item @click="router.push('/user/info')">个人中心</el-dropdown-item>
+                        <el-dropdown-item @click="router.push('/login')">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
