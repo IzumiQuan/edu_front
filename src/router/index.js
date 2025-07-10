@@ -6,6 +6,18 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/login',//空路径重定向
+      name: 'home',
+      component: () => import('../views/Home.vue'),
+      children: [
+        {
+          path: '/class',
+          name: 'class',
+          component: () => import('../views/Class.vue'),
+          meta: {
+            title: '课程',
+          },
+        },
+      ],
     },
     {
       path: '/login',
@@ -14,14 +26,6 @@ const router = createRouter({
       meta: {
         title: '登录',//页面标题
       },
-    },
-    {
-      path: '/class',
-      name: 'class',
-      component: () => import('../views/Class.vue'),
-      meta: {
-        title: '课程',
-      }
     },
   ],
 })
