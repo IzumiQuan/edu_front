@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { regist, login, getAvatar, remove, set, query } from '../api/userApi'
 import router from '@/router'
 import { ElNotification } from 'element-plus'
+
 let user = ref({
     tel: '',
     pwd: '',
@@ -64,7 +65,7 @@ async function handleLogin() {
         try {
             let resp = await login(user.value)
             if (resp.success === true) {
-                router.push("/class")//跳转页面
+                router.push("/course")//跳转页面
             } else {
                 msg = resp.msg
                 ElNotification({
