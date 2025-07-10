@@ -36,7 +36,7 @@ const router = createRouter({
               component: () => import('../views/Info.vue'),
               meta: {
                 title: '个人中心',
-          },
+              },
             },
           ]
         },
