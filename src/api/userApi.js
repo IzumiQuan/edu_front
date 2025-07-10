@@ -4,6 +4,9 @@ export async function login(data) {
     return await request.post(baseUrl + "/login", data)
 }
 
+export async function avatar(data) {
+    return await request.post(baseUrl + "/avatar", data)
+}
 export async function remove(data) {
     return await request.post(baseUrl + "/remove?id=" + data)
 }
