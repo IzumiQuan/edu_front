@@ -50,7 +50,6 @@ const router = createRouter({
         title: '登录',
       },
     },
-    
   ],
 })
 router.beforeEach((to, from, next) => {
