@@ -1,12 +1,17 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import NavBar from '@/components/NavBar.vue'
+let keyword = ref('')
+let handleMessage = (value) => {
+    keyword.value = value
+}
 </script>
 
 <template>
     <div class="page">
-        <NavBar />
-        <RouterView />
+        <NavBar @message="handleMessage" />
+        <RouterView :keyword="keyword" />
     </div>
 </template>
 
