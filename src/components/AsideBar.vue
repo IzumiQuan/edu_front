@@ -75,7 +75,7 @@ let itemlist=ref([
     display: flex;
     width:150px;
     flex-direction: column;
-    margin: 120px 0 0 50px ;
+    margin: 20px 0 0 50px ;
 }
 .tag{
     flex: 1;
