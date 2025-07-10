@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { login, getAvatar, remove, set, query } from '../api/userApi'
+import { regist, login, getAvatar, remove, set, query } from '../api/userApi'
 import router from '@/router'
 import { ElNotification } from 'element-plus'
 let user = ref({
@@ -8,36 +8,63 @@ let user = ref({
     pwd: '',
 })
 let checked = ref(false)
-let data = ref({})
 let msg = ref({})
 let avatar = ref({})
-async function handleLogin() {
+
+function checkValue() {
     if (!checked.value) {
         ElNotification({
             title: 'Error',
             message: '请先勾选用户协议',
             type: 'error',
         })
+        return false
     } else if (user.value.tel === '' || user.value.pwd === '') {
         ElNotification({
             title: 'Error',
-            message: '用户名或密码不能为空',
+            message: '手机号或密码不能为空',
             type: 'error',
         })
+        return false
     } else {
+        return true
+    }
+}
+
+async function handleRegist() {
+    if (checkValue()) {
+        try {
+            let resp = await regist(user.value)
+            if (resp.success === true) {
+                ElNotification({
+                    title: 'Success',
+                    message: '注册成功',
+                    type: 'success',
+                })
+            } else {
+                msg = resp.msg
+                ElNotification({
+                    title: 'Error',
+                    message: msg,
+                    type: 'error',
+                })
+            }
+        } catch (e) {
+            ElNotification({
+                title: 'Error',
+                message: '无法连接服务器',
+                type: 'error',
+            })
+        }
+    }
+}
+
+async function handleLogin() {
+    if (checkValue()) {
         try {
             let resp = await login(user.value)
             if (resp.success === true) {
-                data = resp.data
-                if (data !== null) {
-                    router.push("/class")//跳转页面
-                } else {
-                    ElNotification({
-                        title: 'Success',
-                        message: '注册成功',
-                        type: 'success',
-                    })
-                }
+                router.push("/class")//跳转页面
             } else {
                 msg = resp.msg
                 ElNotification({
@@ -70,7 +97,10 @@ async function handleGetAvatar(){
             <el-input placeholder="请输入手机号" v-model="user.tel" @blur="handleGetAvatar" clearable class="input" />
             <el-input placeholder="请输入密码" v-model="user.pwd" type="password" clearable show-password class="input" />
             <el-checkbox label="同意用户协议" v-model="checked" class="checkbox" />
-            <el-button color="black" size="large" @click.prevent="handleLogin" class="btn">登录</el-button>
+            <el-buttton-group class="group">
+                <el-button color="black" size="large" @click.prevent="handleLogin" class="btn">登录</el-button>
+                <el-button color="black" size="large" @click.prevent="handleRegist" class="btn">注册</el-button>
+            </el-buttton-group>
         </div>
     </div>
 </template>
@@ -102,7 +132,12 @@ async function handleGetAvatar(){
 .checkbox {
     margin: 10px 0;
 }
-.button {
+.group {
     margin: 10px 0;
+    width: 300px;
+    display: flex;
+}
+.btn {
+    flex: 1;
 }
 </style>
