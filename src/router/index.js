@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login',//空路径重定向
+      redirect: '/test',//空路径重定向
       name: 'home',
       component: () => import('../views/Home.vue'),
       children: [
@@ -30,7 +30,7 @@ const router = createRouter({
           name: 'aDetail',
           component: () => import('../views/ActivityDetail.vue'),
           meta: {
-            title: '活动',
+            title: '活动详情',
           },
         },
         {
