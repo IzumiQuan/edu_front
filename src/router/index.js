@@ -14,7 +14,23 @@ const router = createRouter({
           name: 'class',
           component: () => import('../views/Class.vue'),
           meta: {
-            title: '课程',
+            title: '课程',//页面标题
+          },
+        },
+        {
+          path: '/activity',
+          name: 'activity',
+          component: () => import('../views/Activity.vue'),
+          meta: {
+            title: '活动',
+          },
+        },
+        {
+          path: '/info',
+          name: 'info',
+          component: () => import('../views/Info.vue'),
+          meta: {
+            title: '个人中心',
           },
         },
       ],
@@ -24,7 +40,7 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/Login.vue'),
       meta: {
-        title: '登录',//页面标题
+        title: '登录',
       },
     },
   ],
