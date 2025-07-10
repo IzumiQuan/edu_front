@@ -1,5 +1,8 @@
 import request from "@/utils/request"
 let baseUrl = "http://localhost:8080/api/user"
+export async function regist(data) {
+    return await request.post(baseUrl + "/regist", data)
+}
 export async function login(data) {
     return await request.post(baseUrl + "/login", data)
 }
