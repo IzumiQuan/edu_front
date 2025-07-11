@@ -11,7 +11,7 @@ export async function getAvatar(data) {
     return await request.post(baseUrl + "/avatar", data)
 }
 export async function remove(data) {
-    return await request.post(baseUrl + "/remove?id=" + data)
+    return await request.post(baseUrl + "/remove/" + data)
 }
 
 export async function set(data) {
