@@ -1,36 +1,30 @@
 <script setup>
+import { query } from '@/api/classApi';
 import { ref } from 'vue';
+import { onBeforeMount } from 'vue';
 let name = defineProps({
     keyword: String
 })
-// 模拟数据
-const subjectsList = ['语文学科', '数学学科', '英语学科', '中文学科', '电工电气', '数码产品'];
-const classHour = ['1-5', '6-10', '11-15', '16-20'];
-const courses = [
-  {
-    title: '课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称',
-    desc: '课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述'
+let searchCondition = ref({
+  currentPage: 1,
+  pageSize: 8,
+  example: {
+    name: '',
   },
-  {
-    title: '课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称',
-    desc: '课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述'
-  },
-  {
-    title: '课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称',
-    desc: '课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述'
-  },
-  {
-    title: '课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称',
-    desc: '课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述'
-  },
-  {
-    title: '课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称课程名称',
-    desc: '课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述课程详细描述'
-  }
-];
+  list: [],
+  range: [],
+  orderBy: '',
+})
+onBeforeMount(handleData)
+async function handleData(){
+  let resp = await query(searchCondition.value)
+  courses.value = resp.data.records
+}
 
-// 用户信息模拟数据
-const username = '张三';
+const subjects = ['语文学科', '数学学科', '英语学科', '中文学科', '电工电气', '数码产品'];
+const classHour = ['1-5', '6-10', '11-15', '16-20'];
+let courses = ref([])
+
 </script>
 
 <template>
@@ -46,7 +40,7 @@ const username = '张三';
       <!-- 专业方向和学时筛选区域 -->
       <div class="filter">
         <span>专业方向</span>
-        <el-button v-for="(direction, index) in subjectsList" :key="index" type="text" size="small">
+        <el-button v-for="(direction, index) in subjects" :key="index" type="text" size="small">
           {{ direction }}
         </el-button>
         <span>学时</span>
@@ -64,8 +58,8 @@ const username = '张三';
             <img src="@/assets/logo.svg" alt="课程图片">
           </div>
           <div class="course-info">
-            <p class="course-title">{{ course.title }}</p>
-            <p class="course-desc">{{ course.desc }}</p>
+            <p class="course-title">{{ course.name }}</p>
+            <p class="course-desc">{{ course.intro }}</p>
           </div>
         </div>
       </div>
