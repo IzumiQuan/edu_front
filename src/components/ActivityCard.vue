@@ -23,10 +23,10 @@ const props = defineProps({
           :key="index" 
           class="tag"
         >
-          {{ tag }}
+          #{{ tag }}
         </span>
       </div>
-      <button class="报名-btn" @click="handleClick">报名</button>
+      <button class="enroll-btn" @click="handleClick">报名</button>
     </div>
   </div>
 </template>
@@ -81,7 +81,7 @@ const props = defineProps({
   margin-bottom: 6px;
   display: inline-block;
 }
-.报名-btn {
+.enroll-btn {
   align-self: flex-end;
   background-color: #666;
   color: #fff;
@@ -90,7 +90,7 @@ const props = defineProps({
   border-radius: 4px;
   cursor: pointer;
 }
-.报名-btn:hover {
+.enroll-btn:hover {
   background-color: #555;
 }
 </style>
