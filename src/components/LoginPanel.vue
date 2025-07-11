@@ -4,6 +4,7 @@ import { regist, login, getAvatar, remove, set, query } from '../api/userApi'
 import router from '@/router'
 import { ElNotification } from 'element-plus'
 
+localStorage.clear()
 let user = ref({
     tel: '',
     pwd: '',
