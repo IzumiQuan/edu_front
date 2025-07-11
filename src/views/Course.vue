@@ -187,7 +187,7 @@ let courses = ref([])
   color: #666;
 }
 .pag {
-  margin-top: 30px;
+  padding: 25px 0;
   justify-content: center;
 }
 </style>
