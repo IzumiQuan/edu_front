@@ -1,8 +1,24 @@
 <script setup>
-import { ref } from 'vue';
-
-// 模拟活动标签数据
-const eventTags = ref(['活动标签', '活动标签', '活动标签']);
+import { ref, watch } from 'vue';
+import { onBeforeMount } from 'vue';
+import { query, set, remove } from '../api/activityApi.js';
+const props = defineProps({
+  id: { type: Number, required: true }
+})
+let event = ref({});
+let searchCondition = ref({
+  example: {
+    id: props.id
+  }
+})
+onBeforeMount(handleData)
+watch(() => props.id), () => {
+  handleData()
+}
+async function handleData() {
+  let resp = await query(searchCondition.value)
+  event.value = resp.data.records[0]
+}
 </script>
 
 <template>
@@ -14,16 +30,16 @@ const eventTags = ref(['活动标签', '活动标签', '活动标签']);
       </div>
       <div class="event-meta">
         <div class="event-title">
-          <p>活动名称</p>
+          <p>{{ event.name }}</p>
         </div>
         <div class="event-tags">
-          <span v-for="(tag, index) in eventTags" :key="index"># {{ tag }}</span>
+          <span v-for="(tag, index) in JSON.parse(event.tag)" :key="index"># {{ tag }}</span>
         </div>
         <div class="event-time">
-          <span>2025-06-03 13:20:06 ~ 2026-06-03 13:20:06</span>
+          <span>{{ new Date(event.startTime).toLocaleString('zh-CN') }} ~ {{ new Date(event.endTime).toLocaleString('zh-CN') }}</span>
         </div>
         <div class="event-participant-count">
-          <span>205已报名</span>
+          <span>{{ event.attendeeNum }}人已报名</span>
         </div>
         <div class="event-actions">
           <el-button type="primary" size="medium">报名参加</el-button>
@@ -33,7 +49,7 @@ const eventTags = ref(['活动标签', '活动标签', '活动标签']);
     <!-- 活动详情区域 -->
     <div class="event-details">
       <p class="event-description">
-        活动详情，富文本Lenean euismod bibenduaes pulve montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.活动详情，富文本Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.活动详情，富文本Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.活动详情，富文本Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.
+        {{ event.intro }}
       </p>
     </div>
   </div>
