@@ -65,6 +65,7 @@ async function handleLogin() {
         try {
             let resp = await login(user.value)
             if (resp.success === true) {
+                sessionStorage.setItem('user', JSON.stringify(resp.data))
                 router.push("/course")//跳转页面
             } else {
                 msg = resp.msg

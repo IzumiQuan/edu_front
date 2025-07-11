@@ -61,7 +61,7 @@ const router = createRouter({
     {
       path: '/test',
       name: 'test',
-      component: () => import('../components/PaymentDialog.vue'),
+      component: () => import('../views/Login.vue'),
       meta: {
         title: '测试',
       },

@@ -6,6 +6,7 @@ let keyword = ref('')
 function search() {
     emit('message', keyword.value)
 }
+let user = ref(JSON.parse(sessionStorage.getItem('user')))
 </script>
 
 <template>
@@ -24,7 +25,8 @@ function search() {
             <el-dropdown>
                 <div class="ddl" style="">
                     <el-avatar></el-avatar>
-                    <div>张三</div>
+                    <div v-if="user.name !== null">{{ user.name }}</div>
+                    <div v-else>用户名</div>
                     <el-icon><arrow-down /></el-icon>
                 </div>
                 <template #dropdown>
