@@ -38,6 +38,7 @@ const router = createRouter({
           path: '/activity/:id',
           name: 'activityDetail',
           component: () => import('../views/ActivityDetail.vue'),
+          props: true,
           meta: {
             title: '活动详情',
           },
