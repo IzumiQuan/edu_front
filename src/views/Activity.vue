@@ -42,7 +42,7 @@ function handleActivity(activity) {
 }
 
 // 选中的日期
-const selectedDate = ref(new Date());
+const date = ref(new Date());
 // 模拟活动数据
 const events = ref([
   {
@@ -67,7 +67,7 @@ const events = ref([
 <template>
   <div class="event-registration-container">
     <!-- 日历部分 -->
-    <el-calendar v-model="selectedDate">
+    <el-calendar v-model="date">
       <template #dateCell="{ date, data }">
         <div class="date-cell" :class="{ 'is-selected': data.isSelected }">
           <span class="date-number">{{ data.day.split('-').pop() }}</span>
