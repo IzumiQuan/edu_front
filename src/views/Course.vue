@@ -1,10 +1,14 @@
 <script setup>
 import { query } from '@/api/classApi';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { onBeforeMount } from 'vue';
+
 let name = defineProps({
     keyword: String
 })
+
+let totalPage = ref(1)
+
 let searchCondition = ref({
   currentPage: 1,
   pageSize: 8,
@@ -15,20 +19,28 @@ let searchCondition = ref({
   range: [],
   orderBy: '',
 })
+
+watch([() => searchCondition.value.currentPage], ([newVal, oldVal]) => {
+  handleData()
+})
+
 onBeforeMount(handleData)
+
 async function handleData(){
   let resp = await query(searchCondition.value)
   courses.value = resp.data.records
+  console.log(resp.data)
+  totalPage.value = resp.data.pages
+  searchCondition.value.currentPage = resp.data.current
 }
 
 const subjects = ['语文学科', '数学学科', '英语学科', '中文学科', '电工电气', '数码产品'];
 const classHour = ['1-5', '6-10', '11-15', '16-20'];
 let courses = ref([])
-
 </script>
 
 <template>
-    <div class="container">
+  <div class="container">
     <!-- 主体内容 -->
     <el-main class="main">
       <!-- Banner区域 -->
@@ -43,6 +55,8 @@ let courses = ref([])
         <el-button v-for="(direction, index) in subjects" :key="index" type="text" size="small">
           {{ direction }}
         </el-button>
+      </div>
+      <div class="filter">
         <span>学时</span>
         <el-button v-for="(hours, index) in classHour" :key="index" type="text" size="small">
           {{ hours }}学时
@@ -63,6 +77,11 @@ let courses = ref([])
           </div>
         </div>
       </div>
+      <el-pagination backgroud class="pag"
+        layout="prev, pager, next" 
+        :total="totalPage * searchCondition.pageSize"
+        v-model:current-page="searchCondition.currentPage"
+      />
     </el-main>
   </div>
 </template>
@@ -160,5 +179,9 @@ let courses = ref([])
 }
 .course-desc {
   color: #666;
+}
+.pag {
+  align-items: center;
+  justify-items: center;
 }
 </style>
