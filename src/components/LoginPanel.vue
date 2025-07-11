@@ -13,7 +13,7 @@ let checked = ref(false)
 let msg = ref({})
 let avatar = ref({})
 
-function checkValue() {
+function validateValue() {
     if (!checked.value) {
         ElNotification({
             title: 'Error',
@@ -34,7 +34,7 @@ function checkValue() {
 }
 
 async function handleRegist() {
-    if (checkValue()) {
+    if (validateValue()) {
         try {
             let resp = await regist(user.value)
             if (resp.success === true) {
@@ -62,7 +62,7 @@ async function handleRegist() {
 }
 
 async function handleLogin() {
-    if (checkValue()) {
+    if (validateValue()) {
         try {
             let resp = await login(user.value)
             if (resp.success === true) {
