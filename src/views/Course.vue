@@ -181,7 +181,6 @@ let courses = ref([])
   color: #666;
 }
 .pag {
-  align-items: center;
-  justify-items: center;
+  justify-content: center;
 }
 </style>
