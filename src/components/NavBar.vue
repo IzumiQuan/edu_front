@@ -24,7 +24,7 @@ let user = ref(JSON.parse(sessionStorage.getItem('user')))
         <el-menu-item index="/" class="disabled" disabled>
             <el-dropdown>
                 <div class="ddl" style="">
-                    <el-avatar></el-avatar>
+                    <el-avatar icon="el-icon-user" :src="user.avatar"></el-avatar>
                     <div v-if="user.name !== null">{{ user.name }}</div>
                     <div v-else>用户名</div>
                     <el-icon><arrow-down /></el-icon>
