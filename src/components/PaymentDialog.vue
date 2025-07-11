@@ -1,5 +1,4 @@
 <script setup>
-
 // 取消学习方法
 const cancelStudy = () => {
   // 这里可以添加取消学习后的具体逻辑，比如返回上一页等

@@ -1,19 +1,3 @@
-<template>
-  <div class="comments-container">
-    <div class="rating-section">
-      <span class="rating-label">打分</span>
-      <el-rate v-model="rating" :disabled="false" :texts="['★', '★★', '★★★', '★★★★', '★★★★★']"></el-rate>
-    </div>
-    <div class="comment-section">
-      <span class="comment-label">评论</span>
-      <el-input type="textarea" v-model="comment" placeholder="请输入" :rows="5"></el-input>
-    </div>
-    <div class="submit-button">
-      <el-button type="primary" :disabled="!rating ||!comment" @click="submitComment">确定</el-button>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref } from 'vue';
 import { ElRate, ElInput, ElButton } from 'element-plus';
@@ -34,6 +18,23 @@ const submitComment = () => {
   comment.value = '';
 };
 </script>
+
+
+<template>
+  <div class="comments-container">
+    <div class="rating-section">
+      <span class="rating-label">打分</span>
+      <el-rate v-model="rating" :disabled="false" :texts="['★', '★★', '★★★', '★★★★', '★★★★★']"></el-rate>
+    </div>
+    <div class="comment-section">
+      <span class="comment-label">评论</span>
+      <el-input type="textarea" v-model="comment" placeholder="请输入" :rows="5"></el-input>
+    </div>
+    <div class="submit-button">
+      <el-button type="primary" :disabled="!rating ||!comment" @click="submitComment">确定</el-button>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .comments-container {
