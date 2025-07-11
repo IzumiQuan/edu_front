@@ -1,5 +1,45 @@
 <script setup>
-import { ref } from 'vue';
+import { query } from '@/api/activityApi';
+import router from '@/router';
+import { ref, watch } from 'vue';
+import { onBeforeMount } from 'vue';
+
+const props = defineProps({
+    keyword: String
+})
+
+let totalPage = ref(1)
+
+let searchCondition = ref({
+  currentPage: 1,
+  pageSize: 8,
+  example: {
+    name: '',
+  },
+})
+
+watch(() => props.keyword,
+  (newKeyword) => {
+    searchCondition.value.example.name = newKeyword
+    handleData()
+  }
+)
+
+watch([() => searchCondition.value.currentPage], ([newVal, oldVal]) => {
+  handleData()
+})
+
+onBeforeMount(handleData)
+
+async function handleData(){
+  let resp = await query(searchCondition.value)
+  courses.value = resp.data.records
+  totalPage.value = resp.data.pages
+  searchCondition.value.currentPage = resp.data.current
+}
+function handleActivity(activity) { 
+  router.push("/activity/" + activity.id)
+}
 
 // 选中的日期
 const selectedDate = ref(new Date());
@@ -46,6 +86,11 @@ const events = ref([
         </div>
       </div>
     </div>
+    <el-pagination background class="pag"
+        layout="prev, pager, next" 
+        :total="totalPage * searchCondition.pageSize"
+        v-model:current-page="searchCondition.currentPage"
+      />
   </div>
 </template>
 
@@ -105,5 +150,9 @@ const events = ref([
 .event-description {
   padding: 10px;
   text-align: center;
+}
+.pag {
+  padding: 25px 0;
+  justify-content: center;
 }
 </style>
