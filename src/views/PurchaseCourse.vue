@@ -55,7 +55,7 @@ const handlePayment = () => {
       </el-radio-group>
     </div>
     <div class="qr-code">
-      <img src="logo.svg" alt="支付二维码" class="qr-code-image">
+      <img src="../assets/logo.svg" alt="支付二维码" class="qr-code-image">
       <span class="notification">1</span>
     </div>
     <div class="payment-button">
