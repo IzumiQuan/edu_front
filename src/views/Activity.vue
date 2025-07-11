@@ -15,6 +15,7 @@ let searchCondition = ref({
   pageSize: 8,
   example: {
     name: '',
+    startTime: new Date(),
   },
 })
 
@@ -29,11 +30,15 @@ watch([() => searchCondition.value.currentPage], ([newVal, oldVal]) => {
   handleData()
 })
 
+watch([() => searchCondition.value.example.startTime], ([newVal, oldVal]) => {
+  handleData()
+})
+
 onBeforeMount(handleData)
 
 async function handleData(){
   let resp = await query(searchCondition.value)
-  courses.value = resp.data.records
+  events.value = resp.data.records
   totalPage.value = resp.data.pages
   searchCondition.value.currentPage = resp.data.current
 }
@@ -41,33 +46,13 @@ function handleActivity(activity) {
   router.push("/activity/" + activity.id)
 }
 
-// 选中的日期
-const date = ref(new Date());
-// 模拟活动数据
-const events = ref([
-  {
-    title: '活动主题',
-    image: 'event-image-1.png'
-  },
-  {
-    title: '活动主题',
-    image: 'event-image-2.png'
-  },
-  {
-    title: '活动主题',
-    image: 'event-image-3.png'
-  },
-  {
-    title: '活动主题',
-    image: 'event-image-4.png'
-  }
-]);
+let events = ref([])
 </script>
 
 <template>
   <div class="event-registration-container">
     <!-- 日历部分 -->
-    <el-calendar v-model="date">
+    <el-calendar v-model="searchCondition.example.startTime">
       <template #dateCell="{ date, data }">
         <div class="date-cell" :class="{ 'is-selected': data.isSelected }">
           <span class="date-number">{{ data.day.split('-').pop() }}</span>
@@ -82,7 +67,7 @@ const events = ref([
           <div class="image-placeholder">PNG</div>
         </div>
         <div class="event-description">
-          <p>{{ event.title }}</p>
+          <p>{{ event.name }}</p>
         </div>
       </div>
     </div>
