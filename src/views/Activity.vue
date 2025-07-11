@@ -1,5 +1,6 @@
 <script setup>
 import { query } from '@/api/activityApi';
+import ActivityCard from '@/components/ActivityCard.vue';
 import router from '@/router';
 import { ref, watch } from 'vue';
 import { onBeforeMount } from 'vue';
@@ -42,11 +43,11 @@ async function handleData(){
   totalPage.value = resp.data.pages
   searchCondition.value.currentPage = resp.data.current
 }
-function handleActivity(activity) { 
-  router.push("/activity/" + activity.id)
-}
 
 let events = ref([])
+function handleClick(id){
+  router.push("/activity/" + id)
+}
 </script>
 
 <template>
@@ -62,14 +63,7 @@ let events = ref([])
     </el-calendar>
     <!-- 活动展示部分 -->
     <div class="event-display">
-      <div class="event-item" v-for="(event, index) in events" :key="index">
-        <div class="event-image">
-          <div class="image-placeholder">PNG</div>
-        </div>
-        <div class="event-description">
-          <p>{{ event.name }}</p>
-        </div>
-      </div>
+      <ActivityCard v-for="(item, index) in events" :key="index" :activity="item" @click="handleClick(item.id)" class="event-item" />
     </div>
     <el-pagination background class="pag"
         layout="prev, pager, next" 
@@ -110,31 +104,15 @@ let events = ref([])
   margin-top: 5px;
 }
 .event-display {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  margin: 0 75px;
 }
 .event-item {
-  width: calc(25% - 15px);
   background-color: #f5f5f5;
   border-radius: 8px;
   overflow: hidden;
-}
-.event-image {
-  height: 200px;
-  background-color: #d5d5d5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.image-placeholder {
-  width: 80%;
-  height: 80%;
-  color: #999;
-}
-.event-description {
-  padding: 10px;
-  text-align: center;
 }
 .pag {
   padding: 25px 0;

@@ -1,26 +1,10 @@
 <script setup>
-import { useRouter } from 'vue-router';
-
 const props = defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  tags: {
-    type: Array,
-    required: true
-  },
-  id: {
-    type: [String, Number],
+  activity: {
+    type: Object,
     required: true
   }
-});
-
-const router = useRouter();
-
-const handleSignUp = () => {
-  router.push({ name: 'ActivityDetail', params: { id: props.id } });
-};
+})
 </script>
 
 <template>
@@ -31,25 +15,24 @@ const handleSignUp = () => {
     </div>
     <div class="card-content">
       <p class="activity-title">
-        {{ title }}
+        {{ activity.name }}
       </p>
       <div class="tags">
         <span 
-          v-for="(tag, index) in tags" 
+          v-for="(tag, index) in JSON.parse(activity.tag)" 
           :key="index" 
           class="tag"
         >
           {{ tag }}
         </span>
       </div>
-      <button class="报名-btn" @click="handleSignUp">报名</button>
+      <button class="报名-btn" @click="handleClick">报名</button>
     </div>
   </div>
 </template>
 
 <style scoped>
 .activity-card {
-  width: 280px;
   border: 1px solid #eee;
   border-radius: 8px;
   padding: 12px;
