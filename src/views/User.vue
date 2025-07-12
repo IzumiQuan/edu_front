@@ -6,7 +6,7 @@ import AsideBar from '@/components/AsideBar.vue';
 <template>
     <div>
         <AsideBar />
-        <router-view></router-view>
+        <router-view class="user"></router-view>
     </div>
 </template>
 
@@ -14,5 +14,8 @@ import AsideBar from '@/components/AsideBar.vue';
 div {
     display: flex;
     flex-direction: row;
+}
+.user {
+    min-height: 75vh;
 }
 </style>
