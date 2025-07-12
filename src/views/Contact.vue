@@ -15,12 +15,14 @@
       </div>
       <button>提交</button>
 
-      <!-- 拨号联系弹窗 -->
-      <div class="dialog">
-        <h3>拨号联系</h3>
-        <p>XXXXXXXXXXX</p>
-        <button>确定</button>
-      </div>
+      <el-popover placement="bottom" title="拨号联系" :width="200" trigger="hover"
+        content="+12312341234">
+        <template #reference>
+          <div class="circle">
+            拨号<br>联系
+          </div>
+        </template>
+      </el-popover>
     </div>
   </div>
 </template>
@@ -50,15 +52,19 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 左对齐 */
+  align-items: flex-start;
+  /* 左对齐 */
 }
 
 .form-item {
   margin-bottom: 16px;
   display: flex;
-  flex-direction: row; /* 水平排列 */
-  align-items: center; /* 垂直居中对齐 */
-  width: 100%; /* 使 .form-item 容器充满父容器 */
+  flex-direction: row;
+  /* 水平排列 */
+  align-items: center;
+  /* 垂直居中对齐 */
+  width: 100%;
+  /* 使 .form-item 容器充满父容器 */
 }
 
 label {
@@ -66,19 +72,20 @@ label {
   width: 80px;
   text-align: right;
   margin-right: 8px;
-  flex-shrink: 0; /* 防止 label 缩小 */
+  flex-shrink: 0;
+  /* 防止 label 缩小 */
 }
 
 input {
-  flex: 0 0 500px; /* 设置固定宽度为 500px，可以根据需要调整 */
+  flex: 0 0 500px;
   padding: 6px;
   box-sizing: border-box;
 }
 
 button {
-  width: 80px; /* 固定按钮宽度 */
+  width: 80px;
   padding: 6px 12px;
-  margin-top: 20px; /* 调整按钮与表单间距 */
+  margin-top: 20px;
 }
 
 .dialog {
@@ -88,23 +95,22 @@ button {
   background: #fff;
   border: 1px solid #ccc;
   padding: 20px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  width:300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
   z-index: 100;
 }
 
-/* 新增黄色小圆圈 */
-.dialog::before {
-  content: '拨号联系';
+.circle {
   position: absolute;
-  top: 30px;
-  right: -10px;
+  top: 125px;
+  right: 125px;
   width: 50px;
   height: 50px;
   color: black;
   font-size: 13px;
-  line-height: 50px;
+  line-height: 25px;
   text-align: center;
   border-radius: 50%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 </style>
