@@ -1,13 +1,11 @@
 <script setup>
 import LoginPanel from '@/components/LoginPanel.vue';
-
 </script>
 
 <template>
     <div class="page">
         <LoginPanel class="login"/>
     </div>
-    
 </template>
 
 <style scoped>
