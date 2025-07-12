@@ -64,7 +64,6 @@ let user = ref(JSON.parse(sessionStorage.getItem('user')))
         cursor: default;
     }
     .navbar .input {
-        background-color: rgba(240, 240, 240, 1);
         border-radius: 125px;
         --el-menu-item-height: 20px;
     }
