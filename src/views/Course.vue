@@ -91,7 +91,7 @@ let courses = ref([])
         </div>
       </div>
       <!-- 课程列表区域 -->
-      <div class="course-list">
+      <div class="course-list" v-loading="courses.length === 0">
         <CourseCard v-for="(item, index) in courses" :key="index" :course="item" @click="handleCourse(item)" class="course-item" />
       </div>
       <el-pagination background class="pag"
