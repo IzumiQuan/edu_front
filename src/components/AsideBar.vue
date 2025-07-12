@@ -80,7 +80,6 @@ let itemlist=ref([
 }
 .item {
     flex: 1;
-    margin: px;
     font-size: 14px;
     text-align: center;
 }
