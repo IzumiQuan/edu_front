@@ -47,11 +47,11 @@ async function handleData() {
       </div>
     </div>
     <!-- 活动详情区域 -->
-    <div class="event-details">
+    <el-card class="event-details">
       <p class="event-description">
         {{ event.intro }}
       </p>
-    </div>
+    </el-card>
   </div>
 </template>
 
@@ -114,7 +114,6 @@ async function handleData() {
   height: 40vh;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .event-description {
   line-height: 1.6;
