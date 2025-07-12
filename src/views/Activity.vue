@@ -62,7 +62,7 @@ function handleClick(id){
       </template>
     </el-calendar>
     <!-- 活动展示部分 -->
-    <div class="event-display">
+    <div class="event-display" v-loading="events.length === 0">
       <ActivityCard v-for="(item, index) in events" :key="index" :activity="item" @click="handleClick(item.id)" class="event-item" />
     </div>
     <el-pagination background class="pag"
