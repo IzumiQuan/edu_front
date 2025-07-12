@@ -6,14 +6,11 @@ const props = defineProps({
   id: { type: Number, required: true }
 })
 const downloadAttachment = (attachment) => {
-  window.open(attachment.downloadUrl, '_blank');
-};
+  window.open(attachment.downloadUrl, '_blank')
+}
 
 const activeName = ref('first');
 
-const handleClick = (tab, event) => {
-  console.log(tab, event);
-};
 let scCourse = ref({
   example: {
     id: props.id
@@ -69,7 +66,7 @@ const attachments = ref([
             }}</span>
         </div>
         <div class="course-price">
-          <span>${{ courseInfo.price }}</span>
+          <span>￥{{ courseInfo.price }}</span>
         </div>
 
         <div class="course-student-count">
