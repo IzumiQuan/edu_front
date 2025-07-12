@@ -24,6 +24,10 @@
 <style scoped>
 .container {
   display: flex;
+  background-color: white;
+  width: 75%;
+  margin: 10px 5px;
+  padding: 25px 50px;
 }
 
 .sidebar {
