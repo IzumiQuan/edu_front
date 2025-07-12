@@ -1,7 +1,6 @@
 import request from "@/utils/request"
 let prefix = "/user"
 export async function regist(data) {
-    console.log(url)
     return await request.post(prefix + "/regist", data)
 }
 export async function login(data) {
