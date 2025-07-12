@@ -1,24 +1,62 @@
+<script setup>
+import { ref } from 'vue'
+import { ElNotification } from 'element-plus'
+import { login, reset } from '@/api/userApi'
+let user = ref(JSON.parse(sessionStorage.getItem('user')))
+let pwd = ref({
+  old: '',
+  new: '',
+})
+async function handleClick() {
+  if (pwd.value.old === '' || pwd.value.new === '') {
+    ElNotification({
+                title: 'Error',
+                message: '密码不能为空',
+                type: 'error',
+            })
+    return
+  }
+  user.value.pwd = pwd.value.old
+  let resp = await login(user.value)
+  if(resp.code === 200){
+    user.value.pwd = pwd.value.new
+    resp = await reset(user.value)
+    if (resp.code === 200) { 
+      ElNotification({
+                title: 'Success',
+                message: '密码修改成功',
+                type: 'success',
+            })
+    }
+  } else { 
+    ElNotification({
+                title: 'Error',
+                message: '密码验证失败',
+                type: 'error',
+            })
+  }
+  
+}
+
+</script>
+
 <template>
   <div class="container">
     <div class="content">
-      <form @submit.prevent="savePassword">
-        <div class="form-group">
-          <label>新密码</label>
-          <input type="password" v-model="newPassword" required />
-        </div>
-        <div class="form-group">
-          <label>再次输入</label>
-          <input type="password" v-model="confirmPassword" required />
-        </div>
-        <button type="submit">保存</button>
-      </form>
+      <el-form v-model="pwd" label-width="auto" style="max-width: 500px" class="form">
+        <el-form-item label="原密码">
+          <el-input v-model="pwd.old" />
+        </el-form-item>
+        <el-form-item label="新密码">
+          <el-input v-model="pwd.new" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleClick" class="btn">报名</el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
-
-<script>
-
-</script>
 
 <style scoped>
 .container {
@@ -34,28 +72,9 @@
   padding: 20px;
 }
 
-.form-group {
-  margin-bottom: 16px;
-}
-
-label {
-  display: inline-block;
-  width: 80px;
-  text-align: right;
-  margin-right: 8px;
-}
-
-input {
-  width: 300px;
-  padding: 6px;
-  box-sizing: border-box;
-}
-
-button {
-  padding: 6px 12px;
-  background-color: #000;
-  color: #fff;
-  border: none;
+.btn {
+  background-color: black;
+  color: white;
   cursor: pointer;
 }
 </style>
