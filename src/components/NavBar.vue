@@ -12,8 +12,8 @@ let user = ref(JSON.parse(sessionStorage.getItem('user')))
 <template>
     <el-menu mode="horizontal" router :default-active="$route.path" class="navbar">
         <el-menu-item index="/" class="item disabled" disabled>在线学习平台</el-menu-item>
-        <el-menu-item index="/course" class="item"><el-avatar></el-avatar>专属课程</el-menu-item>
-        <el-menu-item index="/activity" class="item"><el-avatar></el-avatar>活动报名</el-menu-item>
+        <el-menu-item index="/course" class="item"><el-avatar><el-icon class="icon"><Reading /></el-icon></el-avatar>专属课程</el-menu-item>
+        <el-menu-item index="/activity" class="item"><el-avatar><el-icon class="icon"><Location /></el-icon></el-avatar>活动报名</el-menu-item>
         <el-menu-item index="/" class="input disabled" disabled>
             <el-input placehoder="搜索关键字" v-model="keyword" @change="search">
                 <template #prepend>
@@ -55,6 +55,9 @@ let user = ref(JSON.parse(sessionStorage.getItem('user')))
     }
     .item:nth-child(3) {
         margin-right: 25%;
+    }
+    .icon {
+        margin: 0;
     }
     .disabled {
         opacity: 1;
