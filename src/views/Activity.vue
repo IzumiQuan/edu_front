@@ -113,6 +113,7 @@ function handleClick(id){
   background-color: #f5f5f5;
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
 }
 .pag {
   padding: 25px 0;
