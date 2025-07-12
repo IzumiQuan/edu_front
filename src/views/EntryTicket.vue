@@ -2,7 +2,6 @@
   <div class="certificate-page">
     <h2>参会证明</h2>
     <div class="certificate-image">
-      <!-- 这里用占位的灰色区域模拟图片，实际可替换成真实图片路径 -->
       <div class="placeholder"></div>
       <p>PNG</p>
     </div>
@@ -11,7 +10,7 @@
 </template>
 
 <script setup>
-// 可在此添加页面逻辑，比如下载功能的实现等
+
 </script>
 
 <style scoped>
