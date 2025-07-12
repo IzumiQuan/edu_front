@@ -2,6 +2,8 @@
 import { ref, watch } from 'vue';
 import { onBeforeMount } from 'vue';
 import { query, set, remove } from '../api/activityApi.js';
+import router from '@/router/index.js';
+import EnrollForm from '@/components/EnrollForm.vue';
 const props = defineProps({
   id: { type: Number, required: true }
 })
@@ -11,13 +13,18 @@ let searchCondition = ref({
     id: props.id
   }
 })
+let showForm = ref(false);
 onBeforeMount(handleData)
-watch(() => props.id), () => {
-  handleData()
+watch(() => props.id), (newId) => {
+  console.log(newId)
 }
 async function handleData() {
   let resp = await query(searchCondition.value)
   event.value = resp.data.records[0]
+}
+
+function handleClick(){
+  showForm.value = true;
 }
 </script>
 
@@ -42,7 +49,7 @@ async function handleData() {
           <span>{{ event.attendeeNum }}人已报名</span>
         </div>
         <div class="event-actions">
-          <el-button type="primary" size="medium">报名参加</el-button>
+          <el-button type="primary" size="medium" @click="handleClick">报名参加</el-button>
         </div>
       </div>
     </div>
@@ -53,6 +60,9 @@ async function handleData() {
       </p>
     </el-card>
   </div>
+  <el-dialog v-model="showForm" title="报名" width="450px">
+    <EnrollForm :id="props.id"/>
+  </el-dialog>
 </template>
 
 <style scoped>
