@@ -83,7 +83,7 @@ async function handleData() {
 .event-meta {
   width: 60%;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -110,7 +110,8 @@ async function handleData() {
   margin-top: 20px;
 }
 .event-details {
-  background-color: #fff;
+  background-color: white;
+  height: 40vh;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
