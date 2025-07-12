@@ -68,7 +68,7 @@ const props = defineProps({
   -webkit-box-orient: vertical;
 }
 .info {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 .tag {
   font-size: 10px;
