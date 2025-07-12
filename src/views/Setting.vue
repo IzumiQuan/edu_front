@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { ElNotification } from 'element-plus'
 import { remove } from '@/api/userApi';
 import router from '@/router';
 
@@ -15,7 +16,11 @@ async function handleClick() {
   let resp = await remove(user.value.id)
   if (resp.code === 200) {
     localStorage.removeItem('user')
-    alert('注销成功')
+    ElNotification({
+                title: 'Info',
+                message: '账号注销成功',
+                type: 'info',
+            })
     router.push('/login')
   }
 }
