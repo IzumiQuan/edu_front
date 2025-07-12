@@ -6,17 +6,17 @@ let user = ref({
     sex: '',
 })
 function handleClick() { 
-    
+
 }
 </script>
 
 <template>
     <el-form v-model="user" label-width="auto" style="max-width: 450px" class="form">
         <el-form-item label="姓名"> 
-            <el-input v-model="user.name"></el-input>
+            <el-input v-model="user.name" />
         </el-form-item>
         <el-form-item label="联系方式"> 
-            <el-input v-model="user.tel"></el-input>
+            <el-input v-model="user.tel" />
         </el-form-item>
         <el-form-item label="性别">
             <el-radio-group v-model="user.sex">
