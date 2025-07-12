@@ -8,10 +8,10 @@ localStorage.clear()
 let user = ref({
     tel: '',
     pwd: '',
+    avatar: ''
 })
 let checked = ref(false)
 let msg = ref({})
-let avatar = ref({})
 
 function validateValue() {
     if (!checked.value) {
@@ -88,7 +88,7 @@ async function handleLogin() {
 async function handleGetAvatar(){
     if(user.value.tel !== ''){
         let resp = await getAvatar(user.value)
-        avatar.value = resp.data.avatar
+        user.value.avatar = resp.data.avatar
     }
 }
 </script>
@@ -96,7 +96,7 @@ async function handleGetAvatar(){
 <template>
     <div class="panel">
         <div class="box">
-            <el-avatar icon="el-icon-user" :src="avatar" class="avatar" />
+            <el-avatar icon="el-icon-user" :src="user.avatar" class="avatar" />
             <el-input placeholder="请输入手机号" v-model="user.tel" @blur="handleGetAvatar" clearable class="input" />
             <el-input placeholder="请输入密码" v-model="user.pwd" type="password" clearable show-password class="input" />
             <el-checkbox label="同意用户协议" v-model="checked" class="checkbox" />
