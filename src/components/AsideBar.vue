@@ -10,53 +10,45 @@ let itemlist=ref([
         text:"基本信息",
         path:"/user/info"
     },
-
     {
         text:"学习记录",
-        path:"/studylog"
+        path:"/user/study"
     },
     {
         text:"学习证书",
-        path:"/certificate"
+        path:"/user/cert"
     },
     {
         text:"报名记录",
-        path:"/submitlog"
+        path:"/user/submit"
     },
     {
         text:"我的学习卡",
-        path:"/studycard"
-
+        path:"/user/card"
     },
      {
         text:"我的会员",
-        path:"/vip"
-
+        path:"/user/vip"
     },
      {
         text:"订单管理",
-        path:"/order"
-
+        path:"/user/order"
     },
      {
         text:"发票管理",
-        path:"/receiptmannager"
-
+        path:"/user/bill"
     },
      {
         text:"联系我们",
         path:"/user/contact"
-
     },
      {
         text:"账号安全",
         path:"/user/safety"
-
     },
      {
         text:"系统设置",
         path:"/user/setting"
-
     },
 ])
 </script>
