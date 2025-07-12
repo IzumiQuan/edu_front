@@ -1,9 +1,9 @@
 <script setup>
+import { ref, watch } from 'vue';
+import { onBeforeMount } from 'vue';
 import { query } from '@/api/activityApi';
 import ActivityCard from '@/components/ActivityCard.vue';
 import router from '@/router';
-import { ref, watch } from 'vue';
-import { onBeforeMount } from 'vue';
 
 const props = defineProps({
     keyword: String
