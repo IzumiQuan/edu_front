@@ -1,8 +1,9 @@
 <script setup>
-import { query } from '@/api/classApi';
-import router from '@/router';
 import { ref, watch } from 'vue';
 import { onBeforeMount } from 'vue';
+import { query } from '@/api/classApi';
+import router from '@/router';
+import CourseCard from '@/components/CourseCard.vue';
 
 const props = defineProps({
     keyword: String
@@ -91,15 +92,7 @@ let courses = ref([])
       </div>
       <!-- 课程列表区域 -->
       <div class="course-list">
-        <div class="course-item" v-for="(course, index) in courses" :key="index" @click="handleCourse(course)">
-          <div class="course-image">
-            <img src="@/assets/logo.svg" alt="课程图片">
-          </div>
-          <div class="course-info">
-            <p class="course-title">{{ course.name }}</p>
-            <p class="course-intro">{{ course.intro }}</p>
-          </div>
-        </div>
+        <CourseCard v-for="(item, index) in courses" :key="index" :course="item" @click="handleCourse(item)" class="course-item" />
       </div>
       <el-pagination background class="pag"
         layout="prev, pager, next" 
@@ -165,26 +158,7 @@ let courses = ref([])
   background-color: #f5f5f5;
   padding: 10px;
   border-radius: 5px;
-}
-.course-image {
-  height: 150px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.course-image img {
-  max-height: 100%;
-  max-width: 100%;
-}
-.course-info {
-  font-size: 14px;
-}
-.course-title {
-  margin-bottom: 5px;
-}
-.course-intro {
-  color: #666;
+  cursor: pointer;
 }
 .pag {
   padding: 25px 0;
