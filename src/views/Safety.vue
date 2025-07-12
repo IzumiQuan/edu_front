@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <div class="content">
       <form @submit.prevent="savePassword">
         <div class="form-group">
@@ -28,10 +27,6 @@
   width: 75%;
   margin: 10px 5px;
   padding: 25px 50px;
-}
-
-.sidebar {
-  width: 200px;
 }
 
 .content {
