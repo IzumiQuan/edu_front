@@ -64,7 +64,7 @@ function editolral() {
 </script>
 
 <template>
-      <div class="profile-container">
+  <div class="profile-container">
     <!-- 头像及基本信息区域 -->
     <div class="profile-header">
       <div class="avatar">{{ getAvatarInitials }}</div>
@@ -103,6 +103,7 @@ function editolral() {
         <td>{{ userInfo.company }}</td>
       </tr>
     </table>
+  </div>
     
     <!-- 编辑弹窗 (简化版) -->
     <div v-if="isEditModalOpen" class="edit-modal">
@@ -119,7 +120,6 @@ function editolral() {
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
@@ -139,8 +139,11 @@ body {
 
 /* 整体容器样式 */
 .profile-container {
-  max-width: 600px;
-  margin: 0;
+  width: 75%;
+  min-height: 75vh;
+  margin: 10px 5px;
+  padding: 25px 50px;
+  background-color: white;
 }
 
 /* 头像及顶部信息区域 */
