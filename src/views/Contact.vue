@@ -32,6 +32,10 @@
 <style scoped>
 .container {
   display: flex;
+  background-color: white;
+  width: 75%;
+  margin: 10px 5px;
+  padding: 25px 50px;
 }
 
 .aside-wrapper {
@@ -97,9 +101,8 @@ button {
   right: -10px;
   width: 50px;
   height: 50px;
-  background-color: yellow;
   color: black;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 50px;
   text-align: center;
   border-radius: 50%;
