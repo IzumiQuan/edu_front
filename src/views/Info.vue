@@ -105,7 +105,7 @@ function editolral() {
     </table>
   </div>
     
-    <!-- 编辑弹窗 (简化版) -->
+    <!-- 编辑弹窗 -->
     <div v-if="isEditModalOpen" class="edit-modal">
       <div class="modal-content">
         <h3>{{ currentEditField === 'username' ? '修改用户名' : '修改身份证' }}</h3>
@@ -123,7 +123,6 @@ function editolral() {
 </template>
 
 <style scoped>
-/* 全局样式初始化 */
 * {
   margin: 0;
   padding: 0;
