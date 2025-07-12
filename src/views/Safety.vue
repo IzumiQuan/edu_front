@@ -35,9 +35,7 @@ async function handleClick() {
                 type: 'error',
             })
   }
-  
 }
-
 </script>
 
 <template>
@@ -74,7 +72,6 @@ async function handleClick() {
 
 .btn {
   background-color: black;
-  color: white;
-  cursor: pointer;
+  border: 0px;
 }
 </style>
