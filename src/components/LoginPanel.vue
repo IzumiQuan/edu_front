@@ -3,8 +3,7 @@ import { ref } from 'vue'
 import { regist, login, getAvatar } from '../api/userApi'
 import router from '@/router'
 import { ElNotification } from 'element-plus'
-
-localStorage.clear()
+sessionStorage.clear()
 let user = ref({
     tel: '',
     pwd: '',
