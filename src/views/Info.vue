@@ -132,18 +132,16 @@ function editolral() {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #fff;
   color: #333;
   padding: 20px;
 }
 
 /* 整体容器样式 */
 .profile-container {
+  background-color: white;
   width: 75%;
-  min-height: 75vh;
   margin: 10px 5px;
   padding: 25px 50px;
-  background-color: white;
 }
 
 /* 头像及顶部信息区域 */
