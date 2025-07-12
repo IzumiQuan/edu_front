@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-import { ElRate, ElInput, ElButton } from 'element-plus';
 
 // 评分
 const rating = ref(0);

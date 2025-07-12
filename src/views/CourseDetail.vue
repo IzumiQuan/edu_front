@@ -138,7 +138,7 @@ const attachments = ref([
 
 .course-info {
   display: flex;
-  margin: 0;
+  border-bottom: 2px solid rgba(240, 240, 240, 1);
 }
 
 .course-image {
@@ -201,7 +201,7 @@ const attachments = ref([
 }
 
 .course-comments {
-  background-color: #fff;
+  background-color: white;
   padding: 20px;
 }
 
@@ -252,59 +252,6 @@ const attachments = ref([
 .course-details-download {
   width: 80%;
   margin: 0 auto;
-}
-
-.course-info {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.course-image {
-  width: 40%;
-  background-color: #e5e5e5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-placeholder {
-  width: 80%;
-  height: 300px;
-  background-color: #d5d5d5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #999;
-}
-
-.course-meta {
-  width: 60%;
-  padding: 20px;
-  background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.course-title p {
-  margin: 0;
-  color: #333;
-  font-size: 16px;
-}
-
-.course-tags span {
-  margin-right: 10px;
-  color: #666;
-  font-size: 14px;
-}
-
-.course-student-count span {
-  color: #666;
-  font-size: 14px;
-}
-
-.course-actions {
-  margin-top: 20px;
 }
 
 .course-interaction {

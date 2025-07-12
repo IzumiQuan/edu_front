@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { onBeforeMount } from 'vue';
-import { query, set, remove } from '../api/activityApi.js';
+import { query } from '../api/activityApi.js';
 import EnrollForm from '@/components/EnrollForm.vue';
 const props = defineProps({
   id: { type: Number, required: true }
