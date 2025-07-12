@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { regist, login, getAvatar, remove, set, query } from '../api/userApi'
+import { regist, login, getAvatar } from '../api/userApi'
 import router from '@/router'
 import { ElNotification } from 'element-plus'
 
