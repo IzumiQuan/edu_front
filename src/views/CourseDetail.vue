@@ -78,7 +78,7 @@ const attachments = ref([
       </div>
     </div>
   </div>
-  <el-tabs v-model="activeName" @tab-click="handleClick">
+  <el-tabs v-model="activeName" @tab-click="handleClick" class="tabs">
     <el-tab-pane label="课程简介" name="first">
       <div>{{ courseInfo.intro }}</div>
     </el-tab-pane>
@@ -123,14 +123,12 @@ const attachments = ref([
   display: flex;
   width: 200px;
   margin-left: 100px;
-
 }
 
 .tag {
   flex: 1;
   font-size: 14px;
   user-select: none;
-
 }
 
 .course-details-score {
@@ -140,7 +138,7 @@ const attachments = ref([
 
 .course-info {
   display: flex;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .course-image {
@@ -164,7 +162,7 @@ const attachments = ref([
 .course-meta {
   width: 60%;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -216,9 +214,7 @@ const attachments = ref([
 .comment-header {
   display: flex;
   align-items: center;
-  /* 垂直居中 */
   gap: 15px;
-  /* 各元素之间的间隔 */
 }
 
 .user-avatar {
@@ -230,17 +226,13 @@ const attachments = ref([
 
 .user-info {
   flex: 1;
-  /* 占据剩余空间 */
   display: flex;
   flex-direction: column;
-  /* 内部元素垂直排列 */
   justify-content: center;
-  /* 垂直居中 */
 }
 
 .user-info .user-name {
   margin-bottom: 5px;
-  /* 用户名和评分之间加点间距 */
 }
 
 .user-rating {
@@ -248,7 +240,6 @@ const attachments = ref([
 }
 
 .comment-date {
-  /* 日期放在最右边，我们可以使用margin-left:auto来推过去 */
   margin-left: auto;
 }
 
@@ -332,5 +323,12 @@ const attachments = ref([
 .course-attachments {
   background-color: #fff;
   padding: 20px;
+}
+
+.tabs {
+  width: 80%;
+  margin: 0 auto;
+  background-color: white;
+  min-height: 50vh;
 }
 </style>
