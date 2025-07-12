@@ -51,7 +51,6 @@ const handlePayment = () => {
       <span class="method-title">支付方式</span>
       <el-radio-group v-model="selectedPaymentMethod">
         <el-radio label="credit">学时支付(剩余学时{{ remainingCredits }})</el-radio>
-        <el-radio label="wechat">微信支付</el-radio>
       </el-radio-group>
     </div>
     <div class="qr-code">
