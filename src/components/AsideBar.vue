@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-let router=useRouter()
+import router from '@/router';
 function handleClick(path){
     router.push(path)
 }
@@ -9,7 +8,7 @@ function handleClick(path){
 let itemlist=ref([
     {
         text:"基本信息",
-        path:"/baseinfo"
+        path:"/user/info"
     },
 
     {
@@ -64,33 +63,33 @@ let itemlist=ref([
 
 <template>
 
-<div class="item">
-  <div v-for="item in itemlist" class="tag" @click="handleClick(item.path)">{{item.text}}</div>
+<div class="list">
+  <div v-for="item in itemlist" class="item" @click="handleClick(item.path)">{{item.text}}</div>
 </div>
 </template>
 
 <style scoped>
-.item{
+.list {
     background-color: white;
     display: flex;
-    width:150px;
+    width: 100px;
     flex-direction: column;
-    margin: 20px 0 0 50px ;
+    min-height: 80vh;
+    margin: 10px 5px 10px 100px;
+    padding: 25px 50px;
 }
-.tag{
+.item {
     flex: 1;
-    margin-top: 30px;
+    margin: px;
     font-size: 14px;
     text-align: center;
-
 }
 
-.tag:hover{
+.item:hover{
     cursor: pointer;
 }
-.tag:active{
+.item:active{
     opacity: 0.5;
-
 }
 
 </style>
