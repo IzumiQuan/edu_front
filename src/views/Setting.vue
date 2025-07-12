@@ -1,11 +1,24 @@
 <script setup>
 import { ref } from 'vue';
+import { remove } from '@/api/userApi';
+import router from '@/router';
+
+let user = ref(JSON.parse(sessionStorage.getItem('user')))
 
 const settingItems = ref([
   { label: '协议规则' },
   { label: '隐私政策' },
   { label: '平台规则' }
 ]);
+
+async function handleClick() {
+  let resp = await remove(user.value.id)
+  if (resp.code === 200) {
+    localStorage.removeItem('user')
+    alert('注销成功')
+    router.push('/login')
+  }
+}
 
 </script>
 
@@ -15,7 +28,7 @@ const settingItems = ref([
       {{ item.label }}
       <span class="arrow">></span>
     </div>
-    <div style="flex: 1;margin: 25px 0;"><el-button class="delete-btn">注销</el-button></div>
+    <div style="flex: 1;margin: 25px 0;"><el-button class="delete-btn" @click="handleClick" type="danger">注销</el-button></div>
   </div>
 </template>
 
@@ -43,7 +56,6 @@ const settingItems = ref([
 }
 
 .delete-btn {
-  background-color: black;
   color: white;
   border: none;
   cursor: pointer;
