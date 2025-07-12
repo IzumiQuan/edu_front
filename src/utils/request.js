@@ -71,7 +71,7 @@ class Request {
 
 // 创建请求实例
 const request = new Request({
-  baseURL: 'http://59dc5273.r20.cpolar.top/api', // 从环境变量获取基础URL
+  baseURL: 'http://257729f0.r5.cpolar.cn/api', // 从环境变量获取基础URL
   timeout: 10000, // 超时时间
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'
