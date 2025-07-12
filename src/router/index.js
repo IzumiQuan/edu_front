@@ -56,6 +56,30 @@ const router = createRouter({
                 title: '个人中心',
               },
             },
+            {
+              path: '/user/contact',
+              name: 'contact',
+              component: () => import('../views/Contact.vue'),
+              meta: {
+                title: '联系我们',
+              },
+            },
+            {
+              path: '/user/safety',
+              name: 'safety',
+              component: () => import('../views/Safety.vue'),
+              meta: {
+                title: '账号安全',
+              },
+            },
+            {
+              path: '/user/setting',
+              name: 'setting',
+              component: () => import('../views/Setting.vue'),
+              meta: {
+                title: '系统设置',
+              },
+            },
           ]
         },
       ],

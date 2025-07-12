@@ -45,17 +45,17 @@ let itemlist=ref([
     },
      {
         text:"联系我们",
-        path:"/context"
+        path:"/user/contact"
 
     },
      {
         text:"账号安全",
-        path:"/safety"
+        path:"/user/safety"
 
     },
      {
         text:"系统设置",
-        path:"setting"
+        path:"/user/setting"
 
     },
 ])
