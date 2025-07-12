@@ -22,7 +22,8 @@ export default defineConfig({
       'localhost',
       '192.168.8.32',
       '192.168.20.96',
-      'http://1f4fd2a2.r20.cpolar.top'
+      '192.168.50.13',
+      'http://2789ad48.r20.cpolar.top'
     ]
   }
 })
