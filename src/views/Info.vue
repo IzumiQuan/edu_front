@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 let user = ref(JSON.parse(sessionStorage.getItem('user')))
 
@@ -61,7 +61,8 @@ const viewIdCard = () => {
         <tr>
           <td class="label">身份证</td>
           <td>
-            已认证
+            <span v-if="user.idCard !== ''">已认证</span>
+            <span v-else>未认证</span>
             <button class="btn" @click="openEditModal('idCard')">编辑</button>
             <button class="btn" @click="viewIdCard">查看</button>
           </td>
