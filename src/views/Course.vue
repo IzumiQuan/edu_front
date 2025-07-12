@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { onBeforeMount } from 'vue';
-import { query } from '@/api/classApi';
+import { query } from '@/api/courseApi';
 import router from '@/router';
 import CourseCard from '@/components/CourseCard.vue';
 
