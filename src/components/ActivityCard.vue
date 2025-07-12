@@ -10,14 +10,13 @@ const props = defineProps({
 <template>
   <div class="activity-card">
     <div class="card-img">
-      <!-- 这里可替换为实际活动图片 -->
       <div class="placeholder-img">PNG</div> 
     </div>
     <div class="card-content">
       <p class="activity-title">
         {{ activity.name }}
       </p>
-      <div class="tags">
+      <div class="info">
         <span 
           v-for="(tag, index) in JSON.parse(activity.tag)" 
           :key="index" 
@@ -26,7 +25,7 @@ const props = defineProps({
           #{{ tag }}
         </span>
       </div>
-      <button class="enroll-btn" @click="handleClick">报名</button>
+      <button class="enroll-btn">报名</button>
     </div>
   </div>
 </template>
@@ -68,18 +67,15 @@ const props = defineProps({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.tags {
+.info {
   margin-bottom: 12px;
 }
 .tag {
-  font-size: 12px;
+  font-size: 10px;
   color: #666;
-  background-color: #f5f5f5;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 4px;
   margin-right: 6px;
   margin-bottom: 6px;
-  display: inline-block;
 }
 .enroll-btn {
   align-self: flex-end;
