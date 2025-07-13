@@ -64,9 +64,7 @@ let courses = ref([])
     <el-main class="main">
       <!-- Banner区域 -->
       <div class="banner">
-        <div class="banner-content">
-          <img src="@/assets/logo.svg" alt="Banner">
-        </div>
+        <el-image src="https://cdn8.axureshop.com/wp-content/uploads/2025/06/110646-111057790415-722x361.png" alt="Banner" fit="cover" class="banner-content"/>
       </div>
       <!-- 专业方向和学时筛选区域 -->
       <div class="filter">
@@ -123,7 +121,7 @@ let courses = ref([])
   justify-content: center;
   align-items: center;
 }
-.banner-content img {
+.banner-content {
   max-height: 100%;
 }
 .filter {
