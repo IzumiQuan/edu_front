@@ -17,10 +17,10 @@ async function handleClick() {
   if (resp.code === 200) {
     localStorage.removeItem('user')
     ElNotification({
-                title: 'Info',
-                message: '账号注销成功',
-                type: 'info',
-            })
+      title: 'Info',
+      message: '账号注销成功',
+      type: 'info',
+    })
     router.push('/login')
   }
 }
@@ -33,7 +33,8 @@ async function handleClick() {
       {{ item.label }}
       <span class="arrow">></span>
     </div>
-    <div style="flex: 1;margin: 25px 0;"><el-button class="delete-btn" @click="handleClick" type="danger">注销</el-button></div>
+    <div style="flex: 1;margin: 25px 0;"><el-button class="delete-btn" @click="handleClick" type="danger">注销</el-button>
+    </div>
   </div>
 </template>
 
@@ -64,6 +65,6 @@ async function handleClick() {
   color: white;
   border: none;
   cursor: pointer;
-  
+
 }
 </style>
