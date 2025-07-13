@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { ElNotification } from 'element-plus'
 import { regist, login, getAvatar } from '../api/userApi'
 import router from '@/router'
-import { ElNotification } from 'element-plus'
 sessionStorage.clear()
 let user = ref({
     tel: '',
@@ -84,8 +84,8 @@ async function handleLogin() {
         }
     }
 }
-async function handleGetAvatar(){
-    if(user.value.tel !== ''){
+async function handleGetAvatar() {
+    if (user.value.tel !== '') {
         let resp = await getAvatar(user.value)
         user.value.avatar = resp.data.avatar
     }
@@ -100,8 +100,10 @@ async function handleGetAvatar(){
             <el-input placeholder="请输入密码" v-model="user.pwd" type="password" clearable show-password class="input" />
             <el-checkbox label="同意用户协议" v-model="checked" class="checkbox" />
             <el-buttton-group class="group">
-                <el-button type="primary" color="black" size="large" @click.prevent="handleLogin" class="btn">登录</el-button>
-                <el-button type="primary" color="black" size="large" @click.prevent="handleRegist" class="btn">注册</el-button>
+                <el-button type="primary" color="black" size="large" @click.prevent="handleLogin"
+                    class="btn">登录</el-button>
+                <el-button type="primary" color="black" size="large" @click.prevent="handleRegist"
+                    class="btn">注册</el-button>
             </el-buttton-group>
         </div>
     </div>
@@ -115,30 +117,36 @@ async function handleGetAvatar(){
     border: 1px solid white;
     border-radius: 10px;
 }
+
 .box {
     margin: 100px;
     width: 300px;
     display: flex;
     flex-direction: column;
 }
+
 .avatar {
     align-self: center;
     margin: 25px 0;
     width: 100px;
     height: 100px;
 }
+
 .input {
     height: 50px;
     margin: 10px 0;
 }
+
 .checkbox {
     margin: 10px 0;
 }
+
 .group {
     margin: 10px 0;
     width: 300px;
     display: flex;
 }
+
 .btn {
     flex: 1;
 }
