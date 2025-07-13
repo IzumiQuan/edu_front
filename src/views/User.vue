@@ -1,6 +1,5 @@
 <script setup>
 import AsideBar from '@/components/AsideBar.vue';
-
 </script>
 
 <template>
