@@ -42,19 +42,17 @@ async function handleClick() {
 
 <template>
   <div class="container">
-    <div class="content">
-      <el-form v-model="pwd" label-width="auto" style="max-width: 500px" class="form">
-        <el-form-item label="原密码">
-          <el-input v-model="pwd.old" type="password" maxlength="20" clearable show-password />
-        </el-form-item>
-        <el-form-item label="新密码">
-          <el-input v-model="pwd.new" type="password" maxlength="20" clearable show-password />
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handleClick" class="btn">保存</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+    <el-form v-model="pwd" label-width="auto" style="max-width: 500px" class="form">
+      <el-form-item label="原密码">
+        <el-input v-model="pwd.old" type="password" maxlength="20" clearable show-password />
+      </el-form-item>
+      <el-form-item label="新密码">
+        <el-input v-model="pwd.new" type="password" maxlength="20" clearable show-password />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="handleClick" class="btn">保存</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
@@ -67,9 +65,12 @@ async function handleClick() {
   padding: 25px 50px;
 }
 
-.content {
+.form {
   flex-grow: 1;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .btn {
