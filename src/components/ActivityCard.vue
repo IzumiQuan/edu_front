@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
   <div class="activity-card">
     <div class="card-img">
-      <div class="placeholder-img">PNG</div> 
+      <el-image :src="activity.img" fit="cover" />
     </div>
     <div class="card-content">
       <p class="activity-title">
