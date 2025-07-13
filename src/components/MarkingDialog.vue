@@ -1,23 +1,16 @@
 <script setup>
 import { ref } from 'vue';
 
-// 评分
 const rating = ref(0);
-// 评论内容
 const comment = ref('');
 
-// 提交评论方法
-const submitComment = () => {
-  // 这里添加提交评论的逻辑，比如发送到后端接口
+function submitComment() {
   console.log('提交的评分为：', rating.value);
   console.log('提交的评论为：', comment.value);
-  // 实际应用中，需要使用axios等工具发送数据到后端
-  // 发送成功后可以清空输入框和评分
   rating.value = 0;
   comment.value = '';
 }
 </script>
-
 
 <template>
   <div class="comments-container">
