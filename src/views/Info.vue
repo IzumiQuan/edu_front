@@ -7,29 +7,6 @@ const isEditModalOpen = ref(false)
 const currentEditField = ref('')
 const editValue = ref('')
 
-const openEditModal = (field) => {
-  currentEditField.value = field
-  editValue.value = userInfo.value[field]
-  isEditModalOpen.value = true
-}
-
-const closeEditModal = () => {
-  isEditModalOpen.value = false
-}
-
-const saveEdit = () => {
-  // 这里可以添加表单验证逻辑
-  userInfo.value[currentEditField.value] = editValue.value
-  closeEditModal()
-
-  // 模拟保存到服务器
-  console.log(`保存 ${currentEditField.value}:`, editValue.value)
-}
-
-const viewIdCard = () => {
-  
-}
-
 </script>
 
 <template>
@@ -63,8 +40,8 @@ const viewIdCard = () => {
           <td>
             <span v-if="user.idCard !== ''">已认证</span>
             <span v-else>未认证</span>
-            <button class="btn" @click="openEditModal('idCard')">编辑</button>
-            <button class="btn" @click="viewIdCard">查看</button>
+            <button class="btn">编辑</button>
+            <button class="btn">查看</button>
           </td>
         </tr>
         <tr>
