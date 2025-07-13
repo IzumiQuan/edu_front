@@ -71,19 +71,6 @@ const editValue = ref('')
 </template>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  color: #333;
-  padding: 20px;
-}
-
-/* 整体容器样式 */
 .profile-container {
   background-color: white;
   width: 75%;
@@ -91,7 +78,6 @@ body {
   padding: 25px 50px;
 }
 
-/* 头像及顶部信息区域 */
 .profile-header {
   display: flex;
   align-items: center;
@@ -134,7 +120,6 @@ body {
   font-size: 14px;
 }
 
-/* 信息表格样式 */
 .info-table {
   width: 100%;
   border-collapse: collapse;
@@ -166,7 +151,6 @@ body {
   background-color: #f5f5f5;
 }
 
-/* 编辑弹窗样式 */
 .edit-modal {
   position: fixed;
   top: 0;
