@@ -15,7 +15,7 @@ let user = ref(JSON.parse(sessionStorage.getItem('user')))
         <el-menu-item index="/course" class="item"><el-avatar><el-icon class="icon"><Reading /></el-icon></el-avatar>专属课程</el-menu-item>
         <el-menu-item index="/activity" class="item"><el-avatar><el-icon class="icon"><Location /></el-icon></el-avatar>活动报名</el-menu-item>
         <el-menu-item index="/" class="input disabled" disabled>
-            <el-input placehoder="搜索关键字" v-model="keyword" @change="search">
+            <el-input placeholder="搜索关键字" v-model="keyword" @change="search">
                 <template #prepend>
                     <el-image style="display: flex;" fit="fill" src="https://cdn8.axureshop.com/demo2025/2328743/images/%E7%BB%A7%E7%BB%AD%E6%95%99%E8%82%B2/u285.svg"></el-image>
                 </template>
