@@ -5,6 +5,9 @@ let form = ref({
   tel: '',
   content: '',
 })
+function handleClick() { 
+  
+}
 </script>
 
 <template>
