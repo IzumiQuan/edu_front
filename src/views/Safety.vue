@@ -10,30 +10,30 @@ let pwd = ref({
 async function handleClick() {
   if (pwd.value.old === '' || pwd.value.new === '') {
     ElNotification({
-                title: 'Error',
-                message: '密码不能为空',
-                type: 'error',
-            })
+      title: 'Error',
+      message: '密码不能为空',
+      type: 'error',
+    })
     return
   }
   user.value.pwd = pwd.value.old
   let resp = await login(user.value)
-  if(resp.code === 200){
+  if (resp.code === 200) {
     user.value.pwd = pwd.value.new
     resp = await reset(user.value)
-    if (resp.code === 200) { 
+    if (resp.code === 200) {
       ElNotification({
-                title: 'Success',
-                message: '密码修改成功',
-                type: 'success',
-            })
+        title: 'Success',
+        message: '密码修改成功',
+        type: 'success',
+      })
     }
-  } else { 
+  } else {
     ElNotification({
-                title: 'Error',
-                message: '密码验证失败',
-                type: 'error',
-            })
+      title: 'Error',
+      message: '密码验证失败',
+      type: 'error',
+    })
   }
 }
 </script>
@@ -43,10 +43,10 @@ async function handleClick() {
     <div class="content">
       <el-form v-model="pwd" label-width="auto" style="max-width: 500px" class="form">
         <el-form-item label="原密码">
-          <el-input v-model="pwd.old" />
+          <el-input v-model="pwd.old" type="password" maxlength="20" clearable show-password />
         </el-form-item>
         <el-form-item label="新密码">
-          <el-input v-model="pwd.new" />
+          <el-input v-model="pwd.new" type="password" maxlength="20" clearable show-password />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleClick" class="btn">报名</el-button>
