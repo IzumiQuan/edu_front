@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { onBeforeMount } from 'vue';
 import { query } from '../api/activityApi.js';
 import EnrollForm from '@/components/EnrollForm.vue';
@@ -14,9 +14,6 @@ let searchCondition = ref({
 })
 let showForm = ref(false);
 onBeforeMount(handleData)
-watch(() => props.id), (newId) => {
-  console.log(newId)
-}
 async function handleData() {
   let resp = await query(searchCondition.value)
   event.value = resp.data.records[0]
@@ -32,7 +29,7 @@ function handleClick(){
     <!-- 活动信息区域 -->
     <div class="event-info">
       <div class="event-image">
-        <div class="image-placeholder">PNG</div>
+        <el-image :src="event.img" fit="cover" class="image"/>
       </div>
       <div class="event-meta">
         <div class="event-title">
@@ -80,7 +77,7 @@ function handleClick(){
   justify-content: center;
   align-items: center;
 }
-.image-placeholder {
+.image {
   width: 80%;
   height: 300px;
   background-color: #d5d5d5;
