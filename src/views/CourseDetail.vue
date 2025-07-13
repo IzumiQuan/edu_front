@@ -14,10 +14,14 @@ const activeName = ref('first');
 
 let scCourse = ref({
   example: {
-    id: props.id
+    id: props.id,
   }
 })
-let scMarking = ref(null);
+let scMarking = ref({
+  example: {
+    id: null,
+  }
+});
 let courseInfo = ref({})
 let markingInfo = ref([])
 async function handleData(sc) {
@@ -110,7 +114,7 @@ const attachments = ref([
     </el-tab-pane>
     <el-tab-pane label="留言评分" name="second">
       <div class="course-comments">
-        <div class="comment" v-for="(comment, index) in commentinfo" :key="index">
+        <div class="comment" v-for="(comment, index) in markingInfo" :key="index">
           <div class="comment-header">
             <img :src="comment.userAvatar" alt="用户头像" class="user-avatar" />
             <div class="user-info">
