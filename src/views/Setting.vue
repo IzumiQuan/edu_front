@@ -24,7 +24,6 @@ async function handleClick() {
     router.push('/login')
   }
 }
-
 </script>
 
 <template>
