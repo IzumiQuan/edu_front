@@ -69,7 +69,7 @@ async function handleClick() {
 }
 
 .form {
-  flex-grow: 1;
+  flex: 1;
   padding: 20px;
   display: flex;
   flex-direction: column;
