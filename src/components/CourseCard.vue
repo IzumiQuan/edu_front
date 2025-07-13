@@ -1,34 +1,33 @@
 <script setup>
+import { ref } from 'vue'
 const props = defineProps({
   course: {
     type: Object,
     required: true
   }
 })
+let user = ref(JSON.parse(sessionStorage.getItem('user')))
 </script>
 
 <template>
   <div class="course-card">
     <div class="card-img">
-      <div class="placeholder-img">PNG</div> 
+      <el-image :src="course.img" fit="cover" />
     </div>
     <div class="card-content">
       <p class="course-title">
         {{ course.name }}
       </p>
       <div class="info">
-        <div 
-          v-for="(tag, index) in JSON.parse(course.tag)" 
-          :key="index" 
-          class="tag"
-        >
+        <div v-for="(tag, index) in JSON.parse(course.tag)" :key="index" class="tag">
           #{{ tag }}
         </div>
         <div class="price">￥{{ course.price.toFixed(2) }}</div>
       </div>
       <div class="info">
         <div class="tag">{{ course.classHour }}学时</div>
-        <button class="purchase-btn">购买课程</button>
+        <div class="tag vip" v-if="new Date(user.vipEndTime) > new Date()">会员免费</div>
+        <button class="purchase-btn" v-else>购买课程</button>
       </div>
     </div>
   </div>
@@ -40,8 +39,9 @@ const props = defineProps({
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .card-img {
   background-color: #ddd;
   height: 160px;
@@ -52,13 +52,12 @@ const props = defineProps({
   margin-bottom: 12px;
   border-radius: 4px;
 }
-.placeholder-img {
-  font-size: 14px;
-}
+
 .card-content {
   display: flex;
   flex-direction: column;
 }
+
 .course-title {
   margin: 0;
   font-size: 14px;
@@ -71,11 +70,13 @@ const props = defineProps({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 .info {
   margin-bottom: 6px;
   display: flex;
   flex-direction: row;
 }
+
 .tag {
   font-size: 10px;
   color: #666;
@@ -84,12 +85,14 @@ const props = defineProps({
   margin-bottom: 6px;
   flex: 1;
 }
+
 .price {
   color: #666;
   font-size: 18px;
   flex: 0 0 100px;
   text-align: right;
 }
+
 .purchase-btn {
   align-self: flex-end;
   background-color: #666;
@@ -99,7 +102,13 @@ const props = defineProps({
   border-radius: 4px;
   cursor: pointer;
 }
+
 .purchase-btn:hover {
   background-color: #555;
+}
+
+.vip {
+  margin-left: auto;
+  text-align: right;
 }
 </style>
