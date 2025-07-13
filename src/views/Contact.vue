@@ -1,12 +1,35 @@
 <script setup>
 import { ref } from 'vue'
+import { ElNotification } from 'element-plus'
+import { add } from '../api/commentApi'
 let form = ref({
   name: '',
   tel: '',
   content: '',
 })
-function handleClick() { 
-  
+async function handleClick() {
+  try {
+    let resp = await add(form.value)
+    if (resp.code == 200) {
+      ElNotification({
+        title: 'Success',
+        message: '反馈成功',
+        type: 'success',
+      })
+    } else {
+      ElNotification({
+        title: 'Error',
+        message: resp.msg,
+        type: 'error',
+      })
+    }
+  } catch (e) {
+    ElNotification({
+      title: 'Error',
+      message: e,
+      type: 'error',
+    })
+  }
 }
 </script>
 
