@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue';
+import { ElNotification } from 'element-plus'
 import { query as queryCourse } from '../api/courseApi.js'
 import { query as queryMarking } from '../api/markingApi.js'
 const props = defineProps({
@@ -26,6 +27,23 @@ async function handleData(sc) {
 async function handleMarking(sc) {
   let resp = await queryMarking(sc.value)
   markingInfo.value = resp.data.records
+}
+async function share() {
+  try {
+    await navigator.clipboard.writeText(window.location.href)
+  } catch (e) {
+    ElNotification({
+      title: 'Error',
+      message: '复制到剪贴板失败',
+      type: 'error',
+    })
+    return
+  }
+  ElNotification({
+    title: 'Success',
+    message: '已复制到剪贴板',
+    type: 'success',
+  })
 }
 onBeforeMount(() => {
   handleData(scCourse)
@@ -63,17 +81,25 @@ const attachments = ref([
         </div>
         <div class="course-tags">
           <span v-for="(item, index) in courseInfo.tag ? JSON.parse(courseInfo.tag) : []" :key="index"># {{ item
-            }}</span>
+          }}</span>
         </div>
         <div class="course-price">
           <span>￥{{ courseInfo.price }}</span>
         </div>
-
         <div class="course-student-count">
           <span>{{ courseInfo.classHour }}学时 {{ courseInfo.learnerNum }}人已加入学习</span>
         </div>
         <div class="course-actions">
-          <el-button type="primary" size="medium">开始学习</el-button>
+          <el-button type="primary" size="medium" class="btn">开始学习</el-button>
+          <el-button type="primary" size="medium" class="btn" v-if="courseInfo.examId !== null">开始考试</el-button>
+          <div class="link">
+            <el-link><el-image
+                src="https://cdn8.axureshop.com/demo2025/2328743/images/%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/u431.svg"
+                alt="评论" class="link" />评论</el-link>
+            <el-link><el-image
+                src="https://cdn8.axureshop.com/demo2025/2328743/images/%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/u330.svg"
+                alt="分享" class="link" @click="share" />分享</el-link>
+          </div>
         </div>
       </div>
     </div>
@@ -192,6 +218,24 @@ const attachments = ref([
 
 .course-actions {
   margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  background-color: rgba(100, 100, 100, 1);
+  border: 0;
+}
+
+.link {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.link-icon {
+  height: 16px;
+  width: 16px;
 }
 
 .tag:hover {
