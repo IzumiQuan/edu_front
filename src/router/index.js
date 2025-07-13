@@ -57,6 +57,22 @@ const router = createRouter({
               },
             },
             {
+              path: '/user/study',
+              name: 'study',
+              component: () => import('../views/StudyLog.vue'),
+              meta: {
+                title: '学习记录',
+              },
+            },
+            {
+              path: '/user/cert',
+              name: 'cert',
+              component: () => import('../views/StudyCert.vue'),
+              meta: {
+                title: '学习证书',
+              },
+            },
+            {
               path: '/user/contact',
               name: 'contact',
               component: () => import('../views/Contact.vue'),
