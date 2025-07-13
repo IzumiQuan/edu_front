@@ -27,6 +27,8 @@ async function handleClick() {
         message: '密码修改成功',
         type: 'success',
       })
+      pwd.value.old = ''
+      pwd.value.new = ''
     }
   } else {
     ElNotification({
@@ -49,7 +51,7 @@ async function handleClick() {
           <el-input v-model="pwd.new" type="password" maxlength="20" clearable show-password />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleClick" class="btn">报名</el-button>
+          <el-button type="primary" @click="handleClick" class="btn">保存</el-button>
         </el-form-item>
       </el-form>
     </div>
