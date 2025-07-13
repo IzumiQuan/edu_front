@@ -1,18 +1,22 @@
 <script setup>
-import { ref } from 'vue';
-import { onBeforeMount } from 'vue';
-import { query } from '../api/activityApi.js';
-import EnrollForm from '@/components/EnrollForm.vue';
+import { ref } from 'vue'
+import { onBeforeMount } from 'vue'
+import { query } from '../api/activityApi.js'
 const props = defineProps({
   id: { type: Number, required: true }
 })
-let event = ref({});
+let event = ref({})
 let searchCondition = ref({
   example: {
     id: props.id
   }
 })
-let showForm = ref(false);
+let form = ref({
+    name: '',
+    tel: '',
+    sex: '男',
+})
+let showForm = ref(false)
 onBeforeMount(handleData)
 async function handleData() {
   let resp = await query(searchCondition.value)
@@ -20,7 +24,13 @@ async function handleData() {
 }
 
 function handleClick(){
-  showForm.value = true;
+  showForm.value = true
+}
+
+function handleSubmit() {
+  form.value.name = ''
+  form.value.tel = ''
+  showForm.value = false
 }
 </script>
 
@@ -56,8 +66,28 @@ function handleClick(){
       </p>
     </el-card>
   </div>
-  <el-dialog v-model="showForm" title="报名" width="450px">
-    <EnrollForm :id="props.id"/>
+  <el-dialog v-model="showForm" title="报名" width="450px" draggable>
+    <el-form v-model="form" label-width="auto" style="max-width: 450px" class="form">
+        <el-form-item label="姓名">
+            <el-input v-model="form.name" />
+        </el-form-item>
+        <el-form-item label="联系方式">
+            <el-input v-model="form.tel" />
+        </el-form-item>
+        <el-form-item label="性别">
+            <el-radio-group v-model="form.sex">
+                <el-radio value="男">男</el-radio>
+                <el-radio value="女">女</el-radio>
+            </el-radio-group>
+        </el-form-item>
+    </el-form>
+    <template #footer>
+        <div class="dialog-footer" style="display: flex;">
+            <el-button type="primary" @click="handleSubmit" class="btn">
+                报名
+            </el-button>
+        </div>
+    </template>
   </el-dialog>
 </template>
 
@@ -125,5 +155,16 @@ function handleClick(){
   line-height: 1.6;
   color: #333;
   font-size: 14px;
+}
+
+.form {
+  margin: 25px 50px;
+}
+
+.btn {
+  flex: 0 0 200px;
+  margin: 0 auto;
+  background-color: black;
+  border: 0px;
 }
 </style>
