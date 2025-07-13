@@ -2,15 +2,24 @@
 import { ref, onBeforeMount } from 'vue';
 import { ElNotification } from 'element-plus'
 import { query as queryCourse } from '../api/courseApi.js'
-import { query as queryMarking } from '../api/markingApi.js'
+import { query as queryMarking, add as addMarking } from '../api/markingApi.js'
 const props = defineProps({
   id: { type: Number, required: true }
 })
+const colors = ref(['#99A9BF', '#F7BA2A', '#FF9900'])
 const downloadAttachment = (attachment) => {
   window.open(attachment.downloadUrl, '_blank')
 }
 
-const activeName = ref('first');
+let user = ref(JSON.parse(sessionStorage.getItem('user')))
+let activeName = ref('first')
+let dialogVisible = ref(false)
+let form = ref({
+  name: user.value.name,
+  point: 0,
+  content: '',
+  avatar: user.value.avatar,
+})
 
 let scCourse = ref({
   example: {
@@ -31,6 +40,35 @@ async function handleData(sc) {
 async function handleMarking(sc) {
   let resp = await queryMarking(sc.value)
   markingInfo.value = resp.data.records
+}
+async function handleSubmit() {
+  try {
+    let resp = await addMarking(form.value)
+    if (resp.code == 200) {
+      ElNotification({
+        title: 'Success',
+        message: '评论发布成功',
+        type: 'success',
+      })
+      handleMarking(scMarking.value)
+      form.point = 0
+      form.content = ''
+      dialogVisible.value = false
+    } else {
+      ElNotification({
+        title: 'Error',
+        message: resp.msg,
+        type: 'error',
+      })
+    }
+  } catch (e) {
+    ElNotification({
+      title: 'Error',
+      message: '无法连接服务器',
+      type: 'error',
+    })
+  }
+
 }
 async function share() {
   try {
@@ -77,7 +115,7 @@ const attachments = ref([
     <!-- 课程信息区域 -->
     <div class="course-info">
       <div class="course-image">
-        <div class="image-placeholder">PNG</div>
+        <el-image :src="courseInfo.img" fit="cover" class="image" />
       </div>
       <div class="course-meta">
         <div class="course-title">
@@ -97,12 +135,12 @@ const attachments = ref([
           <el-button type="primary" size="medium" class="btn">开始学习</el-button>
           <el-button type="primary" size="medium" class="btn" v-if="courseInfo.examId !== null">开始考试</el-button>
           <div class="link">
-            <el-link><el-image
+            <el-link @click="dialogVisible = true"><el-image
                 src="https://cdn8.axureshop.com/demo2025/2328743/images/%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/u431.svg"
                 alt="评论" class="link" />评论</el-link>
-            <el-link><el-image
+            <el-link @click="share"><el-image
                 src="https://cdn8.axureshop.com/demo2025/2328743/images/%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/u330.svg"
-                alt="分享" class="link" @click="share" />分享</el-link>
+                alt="分享" class="link" />分享</el-link>
           </div>
         </div>
       </div>
@@ -116,7 +154,7 @@ const attachments = ref([
       <div class="course-comments">
         <div class="comment" v-for="(comment, index) in markingInfo" :key="index">
           <div class="comment-header">
-            <img :src="comment.userAvatar" alt="用户头像" class="user-avatar" />
+            <img :src="comment.avatar" alt="用户头像" class="user-avatar" />
             <div class="user-info">
               <span class="user-name">{{ comment.name }}</span>
               <span class="user-rating">
@@ -124,7 +162,7 @@ const attachments = ref([
                 </el-rate>
               </span>
             </div>
-            <span class="comment-date">{{ comment.date }}</span>
+            <span class="comment-date">{{ new Date(comment.date ).toLocaleString('zh-CN') }}</span>
           </div>
           <div class="comment-content">
             <p>{{ comment.content }}</p>
@@ -146,6 +184,24 @@ const attachments = ref([
       </div>
     </el-tab-pane>
   </el-tabs>
+  <el-dialog v-model="dialogVisible" width="350">
+    <el-form :model="form">
+      <el-form-item label="评分">
+        <el-rate v-model="form.point" :colors="colors" clearable />
+      </el-form-item>
+      <el-form-item label="评论" label-position="top">
+        <el-input v-model="form.content" type="textarea" maxlength="150" placeholder="请输入内容" clearable show-word-limit
+          :autosize="{ minRows: 5, maxRows: 5 }" />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <div class="dialog-footer" style="display: flex;">
+        <el-button type="primary" @click="handleSubmit" class="btn">
+          确定
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <style scoped>
@@ -325,5 +381,12 @@ const attachments = ref([
   margin: 0 auto;
   background-color: white;
   min-height: 50vh;
+}
+
+.btn {
+  margin: 0px auto;
+  flex: 0 0 100px;
+  background-color: black;
+  border: 0px;
 }
 </style>
