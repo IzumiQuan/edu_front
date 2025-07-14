@@ -63,6 +63,7 @@ let itemlist=ref([
     width: 100px;
     flex-direction: column;
     min-height: 80vh;
+    max-height: 80vh;
     margin: 10px 5px 10px 100px;
     padding: 25px 50px;
 }
