@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { ElNotification } from 'element-plus'
 import { reset } from '@/api/userApi'
-
 let user = ref(JSON.parse(sessionStorage.getItem('user')))
 let editable = ref(user.value.idCard === null)
 let infoVisible = ref(false)
