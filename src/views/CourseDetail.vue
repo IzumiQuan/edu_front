@@ -134,8 +134,10 @@ const attachments = ref([
           <span>{{ courseInfo.classHour }}学时 {{ courseInfo.learnerNum }}人已加入学习</span>
         </div>
         <div class="course-actions">
-          <el-button type="primary" size="medium" class="btn" @click="handleClick">开始学习</el-button>
-          <el-button type="primary" size="medium" class="btn" v-if="courseInfo.examId !== null">开始考试</el-button>
+          <div style="display: flex; gap: 10px;">
+            <el-button type="primary" size="medium" class="btn" @click="handleClick">开始学习</el-button>
+            <el-button type="primary" size="medium" class="btn" v-if="courseInfo.examId !== null">开始考试</el-button>
+          </div>
           <div class="link">
             <el-link @click="dialogVisible = true"><el-image
                 src="https://cdn8.axureshop.com/demo2025/2328743/images/%E8%AF%BE%E7%A8%8B%E8%AF%A6%E6%83%85/u431.svg"
