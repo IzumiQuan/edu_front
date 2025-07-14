@@ -2,14 +2,6 @@
 import { ref, onBeforeMount } from 'vue'
 import request from '@/utils/request.js'
 import router from '@/router'
-
-async function getCourseInfo(sc) {
-  let res = await request.post("/select/query", sc.value)
-  courseInfo.value = res.data.records;
-}
-
-onBeforeMount(getCourseInfo(sc))
-
 let sc = ref({
   example: {
     name: "aaa"
@@ -17,6 +9,14 @@ let sc = ref({
 })
 
 let courseInfo = ref([])
+
+onBeforeMount(() => {
+  getCourseInfo(sc)
+})
+async function getCourseInfo(sc) {
+  let res = await request.post("/select/query", sc.value)
+  courseInfo.value = res.data.records;
+}
 
 function handleAction(course) {
   if (course.createDate) {
