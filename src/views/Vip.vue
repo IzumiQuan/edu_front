@@ -6,11 +6,9 @@ import { reset } from '@/api/userApi.js'
 import router from '@/router'
 let user = ref(JSON.parse(sessionStorage.getItem('user')))
 let course = ref([])
-let sc = ref({
+let scCourse = ref({
   pageSize: 12,
-  example: {
-    name: null,
-  }
+  example: {}
 })
 let dialogVisible = ref(false)
 let success = ref(false)
@@ -18,7 +16,7 @@ onBeforeMount(() => {
   handleData()
 })
 async function handleData() {
-  let resp = await query(sc.value)
+  let resp = await query(scCourse.value)
   if (resp.code === 200) {
     course.value = resp.data.records
   }
@@ -29,12 +27,28 @@ function handleConfirm() {
   success.value = false
 }
 
-function handleHour(hour) {
-  success.value = true
+async function handleHour(hour) {
+  user.value.classHour += hour
+  let resp = await reset(user.value)
+  if (resp.code === 200) {
+    user.value = resp.data
+    sessionStorage.setItem('user', JSON.stringify(user.value))
+    success.value = true
+  }
 }
 
-function handleVIP(month) {
-  success.value = true
+async function handleVIP(month) {
+  if (new Date(user.value.vipEndTime) > new Date()) {
+    user.value.vipEndTime = new Date(new Date(user.value.vipEndTime).setMonth(new Date(user.value.vipEndTime).getMonth() + month))
+  } else {
+    user.value.vipEndTime = new Date(new Date().setMonth(new Date().getMonth() + month))
+  }
+  let resp = await reset(user.value)
+  if (resp.code === 200) {
+    user.value = resp.data
+    sessionStorage.setItem('user', JSON.stringify(user.value))
+    success.value = true
+  }
 }
 
 function handleCourse(course) {
@@ -52,9 +66,11 @@ function handleCourse(course) {
         <div class="card-body">
           <p style="font-size: 12px;text-align: center;">剩余<span style="font-size: 18px;font-weight: 500;">{{
             user.classHour }}</span>学时</p>
-          <div style="display: flex;"><button @click="dialogVisible=true" class="btn">充值</button></div>
-          <p style="font-size: 11px;text-align: center;">VIP有效期至{{ new Date(user.vipEndTime).toLocaleString('zh-CN') }}
+          <div style="display: flex;"><button @click="dialogVisible = true" class="btn">充值</button></div>
+          <p v-if="new Date(user.vipEndTime) > new Date()" style="font-size: 11px;text-align: center;">VIP有效期至{{ new
+            Date(user.vipEndTime).toLocaleString('zh-CN') }}
           </p>
+          <p v-else style="font-size: 11px;text-align: center;">现在还不是VIP</p>
         </div>
       </div>
       <!-- 课程列表区域 -->
@@ -78,7 +94,7 @@ function handleCourse(course) {
       <div class="ops">
         <div class="item" @click="handleHour(2)">2学时<br>￥30</div>
         <div class="item" @click="handleHour(20)">20学时<br>￥250</div>
-        <div class="item" @click="handleHour(20)">30学时<br>￥300</div>
+        <div class="item" @click="handleHour(30)">30学时<br>￥300</div>
         <div class="item" @click="handleVIP(1)">1个月VIP<br>￥30</div>
         <div class="item" @click="handleVIP(3)">3个月VIP<br>￥75</div>
         <div class="item" @click="handleVIP(12)">12个月VIP<br>￥240</div>
