@@ -19,6 +19,10 @@ let itemlist=ref([
         path:"/user/cert"
     },
     {
+        text:"报名记录",
+        path:"/user/enroll"
+    },
+    {
         text:"我的学习卡",
         path:"/user/card"
     },

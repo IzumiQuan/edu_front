@@ -9,52 +9,51 @@ const parseTags = (tagString) => {
     return [];
   }
 };
-async function getcourseinfo(searcondition){
-    let res = await request.post("/select/query",searcondition.value)
-    courseinfo.value = res.data.records
+async function getcourseinfo(searcondition) {
+  let res = await request.post("/select/query", searcondition.value)
+  courseinfo.value = res.data.records
 
 }
-onBeforeMount(()=>{
-    getcourseinfo(searcondition)
+onBeforeMount(() => {
+  getcourseinfo(searcondition)
 })
 let searcondition = ref({
-    example:{
-        name: "aaa"
-    }
+  example: {
+    name: "aaa"
+  }
 })
 let courseinfo = ref([])
 </script>
 
 <template>
-<div class="page">
- <div class="course-item" v-for="course in courseinfo" >
-    <!-- 左侧图像区域 -->
-    <div class="image-container">
-     {{course.image}}
-    </div>
+  <div class="page">
+    <div class="course">
+      <div class="course-item" v-for="course in courseinfo">
+        <!-- 左侧图像区域 -->
+        <div class="image-container">
+          {{ course.image }}
+        </div>
 
-    <!-- 中间内容区域 -->
-    <div class="content-container">
-      <!-- 课程名称 -->
-      <div class="course-title">
-        {{ course.name }}
-      </div>
-      <!-- 课程标签 -->
-       <span v-for="(tag, idx) in parseTags(course.tag)" :key="idx" class="tag-item">
+        <!-- 中间内容区域 -->
+        <div class="content-container">
+          <!-- 课程名称 -->
+          <div class="course-title">
+            {{ course.name }}
+          </div>
+          <!-- 课程标签 -->
+          <span v-for="(tag, idx) in parseTags(course.tag)" :key="idx" class="tag-item">
             # {{ tag }}
           </span>
-    </div>
-    <!-- 右侧按钮区域 -->
-    <div class="button-container">
-      <button class="exam-record-btn">
-        考试记录
-      </button>
-      <button class="continue-learning-btn">
-        继续学习
-      </button>
+        </div>
+        <!-- 右侧按钮区域 -->
+        <div class="button-container">
+          <el-button class="continue-learning-btn">
+            继续学习
+          </el-button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -63,18 +62,24 @@ let courseinfo = ref([])
   width: 75%;
   margin: 10px 5px;
   padding: 25px 50px;
-  min-height: 100vh;
 }
+
+.course {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .course-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 16px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid rgba(240, 240, 240, 1);
 }
 
 .image-container {
-  width: 130px;
+  flex: 0 0 130px;
   height: 100px;
   background-color: #d3d3d3;
   display: flex;
@@ -85,7 +90,7 @@ let courseinfo = ref([])
 }
 
 .content-container {
-  flex-grow: 1;
+  flex: 1;
 }
 
 .course-title {
@@ -100,7 +105,7 @@ let courseinfo = ref([])
 }
 
 .button-container {
-  display: flex;
+  flex: 0 0 50px;
 }
 
 .exam-record-btn,
