@@ -73,6 +73,15 @@ const router = createRouter({
               },
             },
             {
+              path: '/user/vip',
+              name: 'vip',
+              component: () => import('../views/Vip.vue'),
+              props: true,
+              meta: {
+                title: '我的会员',
+              },
+            },
+            {
               path: '/user/order',
               name: 'order',
               component: () => import('../views/OrderManager.vue'),
