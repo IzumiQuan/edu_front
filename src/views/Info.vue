@@ -1,12 +1,74 @@
 <script setup>
 import { ref } from 'vue'
+import { ElNotification } from 'element-plus'
+import { reset } from '@/api/userApi'
 
 let user = ref(JSON.parse(sessionStorage.getItem('user')))
+let editable = ref(user.value.idCard === null)
+let infoVisible = ref(false)
+let info = ref({
+  id: user.value.id,
+  name: user.value.name,
+  tel: user.value.tel,
+  sex: user.value.sex,
+  email: user.value.email,
+  company: user.value.company,
+})
+let identityVisible = ref(false)
+let identity = ref({
+  id: user.value.id,
+  name: user.value.name,
+  idCard: user.value.idCard,
+})
+async function handleInfo() {
+  let resp = await reset(info.value)
+  if (resp.code === 200) {
+    ElNotification({
+      title: 'Success',
+      message: '修改成功',
+      type: 'success',
+    })
+    user.value = resp.data
+    sessionStorage.setItem('user', JSON.stringify(user.value))
+    infoVisible.value = false
+  } else {
+    ElNotification({
+      title: 'Error',
+      message: resp.msg,
+      type: 'error',
+    })
+  }
+}
 
-const isEditModalOpen = ref(false)
-const currentEditField = ref('')
-const editValue = ref('')
-
+async function handleIdentity() {
+  if(identity.value.idCard === '' || identity.value.name === ''){
+    ElNotification({
+      title: 'Error',
+      message: '身份证号和姓名不能为空',
+      type: 'error',
+    })
+    return
+  }
+  
+  let resp = await reset(identity.value)
+  if (resp.code === 200) {
+    ElNotification({
+      title: 'Success',
+      message: '认证成功',
+      type: 'success',
+    })
+    user.value = resp.data
+    sessionStorage.setItem('user', JSON.stringify(user.value))
+    identityVisible.value = false
+    editable.value = false
+  } else {
+    ElNotification({
+      title: 'Error',
+      message: resp.msg,
+      type: 'error',
+    })
+  }
+}
 </script>
 
 <template>
@@ -19,7 +81,7 @@ const editValue = ref('')
           {{ user.name }}
           <el-image class="edit-icon"
             src="https://cdn8.axureshop.com/demo2025/2328743/images/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/u2950.svg"
-            :fit="fit" />
+            :fit="fit" @click="infoVisible = true" />
         </h2>
         <div class="tags">
           <span class="tag">{{ user.role }}</span>
@@ -38,10 +100,10 @@ const editValue = ref('')
         <tr>
           <td class="label">身份证</td>
           <td>
-            <span v-if="user.idCard !== ''">已认证</span>
+            <span v-if="!editable">已认证</span>
             <span v-else>未认证</span>
-            <button class="btn">编辑</button>
-            <button class="btn">查看</button>
+            <button class="btn" v-if="editable" @click="identityVisible = true">编辑</button>
+            <button class="btn" v-else @click="identityVisible = true">查看</button>
           </td>
         </tr>
         <tr>
@@ -56,18 +118,58 @@ const editValue = ref('')
     </table>
   </div>
 
-  <!-- 编辑弹窗 -->
-  <div v-if="isEditModalOpen" class="edit-modal">
-    <div class="modal-content">
-      <h3>{{ currentEditField === 'username' ? '修改用户名' : '修改身份证' }}</h3>
-      <input v-model="editValue" :placeholder="currentEditField === 'username' ? '请输入用户名' : '请输入身份证号'"
-        class="input-field">
-      <div class="modal-actions">
-        <button class="btn cancel-btn" @click="closeEditModal">取消</button>
-        <button class="btn save-btn" @click="saveEdit">保存</button>
+  <el-dialog v-model="infoVisible" title="编辑资料" width="500" draggable>
+    <el-form :model="info" class="form">
+      <el-form-item label="姓名">
+        <el-input v-model="info.name" type="text" maxlength="5" clearable show-word-limit />
+      </el-form-item>
+      <el-form-item label="手机号码">
+        <el-input v-model="info.tel" type="text" maxlength="11" clearable show-word-limit />
+      </el-form-item>
+      <el-form-item label="性别">
+        <el-radio-group v-model="info.sex">
+          <el-radio value="男">男</el-radio>
+          <el-radio value="女">女</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input v-model="info.email" type="text" maxlength="50" clearable show-word-limit />
+      </el-form-item>
+      <el-form-item label="绑定单位">
+        <el-select v-model="info.company" placeholder="请选择" clearable>
+          <el-option label="学校" value="学校" />
+          <el-option label="公司" value="公司" />
+          <el-option label="其他" value="其他" />
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button type="primary" @click="handleInfo">
+          确定
+        </el-button>
       </div>
-    </div>
-  </div>
+    </template>
+  </el-dialog>
+
+  <el-dialog v-model="identityVisible" width="500">
+    <el-form :model="identity" class="form">
+      <el-form-item label="身份证号">
+        <el-input v-model="identity.idCard" type="text" maxlength="18" clearable show-word-limit :disabled="!editable" />
+      </el-form-item>
+      <el-form-item label="真实姓名">
+        <el-input v-model="identity.name" type="text" maxlength="5" clearable show-word-limit :disabled="!editable" />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button type="primary" @click="handleIdentity" :disabled="!editable">
+          提交认证
+        </el-button>
+        <el-button @click="identityVisible = false">取消认证</el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <style scoped>
@@ -151,49 +253,7 @@ const editValue = ref('')
   background-color: #f5f5f5;
 }
 
-.edit-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
-}
-
-.modal-content h3 {
-  margin-bottom: 15px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.cancel-btn {
-  margin-right: 10px;
-}
-
-.save-btn {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+.form {
+  margin: 25px 50px;
 }
 </style>
