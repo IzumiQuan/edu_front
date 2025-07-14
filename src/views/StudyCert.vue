@@ -30,17 +30,16 @@ function handleAction(course) {
 <template>
   <div class="container">
     <div class="info-container" v-for="(course, index) in courseInfo" :key="index">
-
-      <div class="info-item">
-        <span class="label">所属课程：</span>
-        <span class="value">{{ course.name }}</span>
+      <div>
+        <div class="info-item">
+          <span class="label">所属课程：</span>
+          <span class="value">{{ course.name }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">颁发时间：</span>
+          <span class="value">{{ course.createDate ? new Date(course.createDate).toLocaleString('zh-CN') : '-' }}</span>
+        </div>
       </div>
-
-      <div class="info-item">
-        <span class="label">颁发时间：</span>
-        <span class="value">{{ course.createDate ? new Date(course.createDate).toLocaleString('zh-CN') : '-' }}</span>
-      </div>
-
       <div class="button-container">
         <button class="action-btn" @click="handleAction(course)">
           {{ course.createDate ? '查看证书' : '申请' }}
@@ -59,6 +58,7 @@ function handleAction(course) {
   display: flex;
   flex-direction: column;
 }
+
 .info-container {
   display: flex;
   padding: 20px;
@@ -87,12 +87,12 @@ function handleAction(course) {
 
 .button-container {
   display: flex;
-  align-items: center;
+  margin: auto 0;
 }
 
 .action-btn {
   background-color: #555;
-  color: #fff;
+  color: white;
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
