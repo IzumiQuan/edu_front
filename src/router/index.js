@@ -53,7 +53,7 @@ const router = createRouter({
               name: 'info',
               component: () => import('../views/Info.vue'),
               meta: {
-                title: '个人中心',
+                title: '基本信息',
               },
             },
             {
@@ -78,6 +78,14 @@ const router = createRouter({
               component: () => import('../views/OrderManager.vue'),
               meta: {
                 title: '订单管理',
+              },
+            },
+            {
+              path: '/user/bill',
+              name: 'bill',
+              component: () => import('../views/BillManager.vue'),
+              meta: {
+                title: '发票管理',
               },
             },
             {
