@@ -48,10 +48,10 @@ const changeTab = (tab) => {
             <div>{{ bill.date }}</div>
             <span>${{ bill.price }}</span>
           </div>
-          <div class="button-type"><el-button style="margin-left: auto;" type="primary"
-              @click="handlePay(bill)">申请开票</el-button></div>
         </div>
       </div>
+      <div class="button-type" v-if="currentTab === '可开发票'"><el-button style="margin-left: auto;" type="primary"
+              @click="handlePay(bill)">申请开票</el-button></div>
     </div>
   </div>
 </template>

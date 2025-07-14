@@ -38,7 +38,7 @@ function handleAction(course) {
 
       <div class="info-item">
         <span class="label">颁发时间：</span>
-        <span class="value">{{ course.createDate || '-' }}</span>
+        <span class="value">{{ course.createDate ? new Date(course.createDate).toLocaleString('zh-CN') : '-' }}</span>
       </div>
 
       <div class="button-container">
@@ -56,11 +56,13 @@ function handleAction(course) {
   width: 75%;
   margin: 10px 5px;
   padding: 25px 50px;
+  display: flex;
+  flex-direction: column;
 }
 .info-container {
+  display: flex;
   padding: 20px;
   border-bottom: 1px solid #eaeaea;
-  display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
