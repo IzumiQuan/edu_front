@@ -51,7 +51,7 @@ const changeTab = (tab) => {
             <div>生成时间：{{ new Date(order.createDate).toLocaleString('zh-CN') }}</div>
             <div>支付时间：{{ order.payDate ? new Date(order.payDate).toLocaleString('zh-CN') : '—' }}</div>
           </div>
-          <div class="button-container">
+          <div class="button-container" v-if="order.status === '待支付'">
             <el-button type="default" @click="handleCancel(order)">取消</el-button>
             <el-button type="primary" @click="handlePay(order)">支付</el-button>
           </div>
