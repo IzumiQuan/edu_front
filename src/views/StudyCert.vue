@@ -28,51 +28,59 @@ function handleAction(course) {
 </script>
 
 <template>
-  <div class="info-container" v-for="(course, index) in courseInfo" :key="index">
+  <div class="container">
+    <div class="info-container" v-for="(course, index) in courseInfo" :key="index">
 
-    <div class="info-item">
-      <span class="label">所属课程：</span>
-      <span class="value">{{ course.name }}</span>
-    </div>
+      <div class="info-item">
+        <span class="label">所属课程：</span>
+        <span class="value">{{ course.name }}</span>
+      </div>
 
-    <div class="info-item">
-      <span class="label">颁发时间：</span>
-      <span class="value">{{ course.createDate || '-' }}</span>
-    </div>
+      <div class="info-item">
+        <span class="label">颁发时间：</span>
+        <span class="value">{{ course.createDate || '-' }}</span>
+      </div>
 
-    <div class="button-container">
-      <button class="action-btn" @click="handleAction(course)">
-        {{ course.createDate ? '查看证书' : '申请' }}
-      </button>
+      <div class="button-container">
+        <button class="action-btn" @click="handleAction(course)">
+          {{ course.createDate ? '查看证书' : '申请' }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.container {
+  background-color: white;
+  width: 75%;
+  margin: 10px 5px;
+  padding: 25px 50px;
+}
 .info-container {
   padding: 20px;
   border-bottom: 1px solid #eaeaea;
   display: flex;
-  justify-content: space-between; 
-  align-items: flex-start; 
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .info-item {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   font-size: 16px;
   color: #333;
 }
 
 .label {
   font-weight: bold;
-  display: inline-block; 
-  min-width: 80px; 
+  display: inline-block;
+  min-width: 80px;
 }
 
 .value {
   margin-left: 5px;
   color: #666;
-  display: inline-block; 
+  display: inline-block;
 }
 
 .button-container {
