@@ -43,10 +43,9 @@ async function handleRegist() {
                     type: 'success',
                 })
             } else {
-                msg = resp.msg
                 ElNotification({
                     title: 'Error',
-                    message: msg,
+                    message: resp.msg,
                     type: 'error',
                 })
             }
