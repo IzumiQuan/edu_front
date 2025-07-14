@@ -68,7 +68,6 @@ async function handleSubmit() {
       type: 'error',
     })
   }
-
 }
 async function share() {
   try {
@@ -86,6 +85,9 @@ async function share() {
     message: '已复制到剪贴板',
     type: 'success',
   })
+}
+function handleClick() {
+  
 }
 onBeforeMount(() => {
   handleData(scCourse)
@@ -132,7 +134,7 @@ const attachments = ref([
           <span>{{ courseInfo.classHour }}学时 {{ courseInfo.learnerNum }}人已加入学习</span>
         </div>
         <div class="course-actions">
-          <el-button type="primary" size="medium" class="btn">开始学习</el-button>
+          <el-button type="primary" size="medium" class="btn" @click="handleClick">开始学习</el-button>
           <el-button type="primary" size="medium" class="btn" v-if="courseInfo.examId !== null">开始考试</el-button>
           <div class="link">
             <el-link @click="dialogVisible = true"><el-image
