@@ -29,6 +29,14 @@ function handleClick() {
 }
 
 async function handleSubmit() {
+  if(form.value.name === '' || form.value.tel === ''){
+    ElNotification({
+      title: 'Error',
+      message: '姓名和联系方式不能为空',
+      type: 'error',
+    })
+    return
+  }
   form.value.activity = event.value.name
   form.value.activityDate = event.value.startTime
   let resp = await request.post("enroll/add", form.value)
