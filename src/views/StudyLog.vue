@@ -8,11 +8,10 @@ const parseTags = (tagString) => {
     console.warn('tag 解析失败', tagString);
     return [];
   }
-};
+}
 async function getcourseinfo(searcondition) {
   let res = await request.post("/select/query", searcondition.value)
   courseinfo.value = res.data.records
-
 }
 onBeforeMount(() => {
   getcourseinfo(searcondition)
