@@ -3,6 +3,7 @@ import { ref, onBeforeMount } from 'vue';
 import { ElNotification } from 'element-plus'
 import { query as queryCourse } from '../api/courseApi.js'
 import { query as queryMarking, add as addMarking } from '../api/markingApi.js'
+import router from '@/router/index.js';
 const props = defineProps({
   id: { type: Number, required: true }
 })
@@ -87,7 +88,7 @@ async function share() {
   })
 }
 function handleClick() {
-
+  router.push("/course/" + courseInfo.id + "/study")
 }
 onBeforeMount(() => {
   handleData(scCourse)
@@ -114,7 +115,6 @@ const attachments = ref([
 
 <template>
   <div class="course-details-score">
-    <!-- 课程信息区域 -->
     <div class="course-info">
       <div class="course-image">
         <el-image :src="courseInfo.img" fit="cover" class="image" />
