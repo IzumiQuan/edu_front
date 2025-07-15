@@ -46,10 +46,6 @@ const props = defineProps({
   border-radius: 4px;
 }
 
-.placeholder-img {
-  font-size: 14px;
-}
-
 .card-content {
   display: flex;
   flex-direction: column;
