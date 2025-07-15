@@ -73,6 +73,14 @@ const router = createRouter({
               },
             },
             {
+              path: '/user/enroll',
+              name: 'enroll',
+              component: () => import('../views/EnrollLog.vue'),
+              meta: {
+                title: '学习证书',
+              },
+            },
+            {
               path: '/user/vip',
               name: 'vip',
               component: () => import('../views/Vip.vue'),
