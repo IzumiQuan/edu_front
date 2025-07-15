@@ -15,14 +15,21 @@ async function getbill(sc) {
 }
 
 async function handleBill() {
-  list.value.forEach((id) => {
-    let bill = ref({
-      id: id,
-      status: '已开发票',
-    })
-    request.post("/bill/reset", bill.value)
+  let total = list.value.length
+  let count = 0
+  for (let item of list.value) {
+    item.status = '已开发票'
+    let resp = await request.post("/bill/reset", item)
+    if (resp.code == 200) {
+      count++
+    }
+  }
+  ElNotification({
+    title: 'Info',
+    message: '开票成功：' + count + ' 失败：' + (total - count),
+    type: 'info',
   })
-  await getbill(sc)
+  getbill(sc)
 }
 
 onBeforeMount(() => {
@@ -55,7 +62,7 @@ const changeTab = (tab) => {
         <div v-for="(bill, index) in bill" :key="index">
           <div v-if="bill.status === currentTab" class="order-container">
             <div class="check-box">
-              <el-checkbox :value="bill.id">
+              <el-checkbox :value="bill">
                 <div class="course-name">{{ bill.billName }}</div>
               </el-checkbox>
             </div>
