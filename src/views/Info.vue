@@ -40,7 +40,7 @@ async function handleInfo() {
 }
 
 async function handleIdentity() {
-  if(identity.value.idCard === '' || identity.value.name === ''){
+  if (identity.value.idCard === '' || identity.value.name === '') {
     ElNotification({
       title: 'Error',
       message: '身份证号和姓名不能为空',
@@ -48,7 +48,7 @@ async function handleIdentity() {
     })
     return
   }
-  
+
   let resp = await reset(identity.value)
   if (resp.code === 200) {
     ElNotification({
@@ -152,7 +152,8 @@ async function handleIdentity() {
   <el-dialog v-model="identityVisible" width="500">
     <el-form :model="identity" class="form">
       <el-form-item label="身份证号">
-        <el-input v-model="identity.idCard" type="text" maxlength="18" clearable show-word-limit :disabled="!editable" />
+        <el-input v-model="identity.idCard" type="text" maxlength="18" clearable show-word-limit
+          :disabled="!editable" />
       </el-form-item>
       <el-form-item label="真实姓名">
         <el-input v-model="identity.name" type="text" maxlength="5" clearable show-word-limit :disabled="!editable" />

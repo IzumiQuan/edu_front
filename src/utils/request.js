@@ -66,7 +66,7 @@ class Request {
   post(url, data = {}, config = {}) {
     return this.instance.post(url, data, config)
   }
-  
+
 }
 
 // 创建请求实例

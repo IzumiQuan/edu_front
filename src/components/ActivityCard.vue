@@ -10,18 +10,14 @@ const props = defineProps({
 <template>
   <div class="activity-card">
     <div class="card-img">
-      <el-image :src="activity.img" fit="cover" />
+      <el-image :src="activity.img" fit="cover" style="width: 100%; height: 100%;" />
     </div>
     <div class="card-content">
       <p class="activity-title">
         {{ activity.name }}
       </p>
       <div class="info">
-        <span 
-          v-for="(tag, index) in JSON.parse(activity.tag)" 
-          :key="index" 
-          class="tag"
-        >
+        <span v-for="(tag, index) in JSON.parse(activity.tag)" :key="index" class="tag">
           #{{ tag }}
         </span>
       </div>
@@ -36,8 +32,9 @@ const props = defineProps({
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .card-img {
   background-color: #ddd;
   height: 160px;
@@ -48,13 +45,16 @@ const props = defineProps({
   margin-bottom: 12px;
   border-radius: 4px;
 }
+
 .placeholder-img {
   font-size: 14px;
 }
+
 .card-content {
   display: flex;
   flex-direction: column;
 }
+
 .activity-title {
   margin: 0;
   font-size: 14px;
@@ -67,9 +67,11 @@ const props = defineProps({
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 .info {
   margin-bottom: 6px;
 }
+
 .tag {
   font-size: 10px;
   color: #666;
@@ -77,6 +79,7 @@ const props = defineProps({
   margin-right: 6px;
   margin-bottom: 6px;
 }
+
 .enroll-btn {
   align-self: flex-end;
   background-color: #666;
@@ -86,6 +89,7 @@ const props = defineProps({
   border-radius: 4px;
   cursor: pointer;
 }
+
 .enroll-btn:hover {
   background-color: #555;
 }

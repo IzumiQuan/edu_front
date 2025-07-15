@@ -14,6 +14,7 @@ div {
     display: flex;
     flex-direction: row;
 }
+
 .user {
     min-height: 75vh;
 }

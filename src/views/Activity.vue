@@ -6,7 +6,7 @@ import ActivityCard from '@/components/ActivityCard.vue';
 import router from '@/router';
 
 const props = defineProps({
-    keyword: String
+  keyword: String
 })
 
 let totalPage = ref(1)
@@ -37,7 +37,7 @@ watch([() => searchCondition.value.example.startTime], ([newVal, oldVal]) => {
 
 onBeforeMount(handleData)
 
-async function handleData(){
+async function handleData() {
   let resp = await query(searchCondition.value)
   events.value = resp.data.records
   totalPage.value = resp.data.pages
@@ -45,7 +45,7 @@ async function handleData(){
 }
 
 let events = ref([])
-function handleClick(id){
+function handleClick(id) {
   router.push("/activity/" + id)
 }
 </script>
@@ -63,13 +63,11 @@ function handleClick(id){
     </el-calendar>
     <!-- 活动展示部分 -->
     <div class="event-display" v-loading="events.length === 0">
-      <ActivityCard v-for="(item, index) in events" :key="index" :activity="item" @click="handleClick(item.id)" class="event-item" />
+      <ActivityCard v-for="(item, index) in events" :key="index" :activity="item" @click="handleClick(item.id)"
+        class="event-item" />
     </div>
-    <el-pagination background class="pag"
-        layout="prev, pager, next" 
-        :total="totalPage * searchCondition.pageSize"
-        v-model:current-page="searchCondition.currentPage"
-      />
+    <el-pagination background class="pag" layout="prev, pager, next" :total="totalPage * searchCondition.pageSize"
+      v-model:current-page="searchCondition.currentPage" />
   </div>
 </template>
 
@@ -78,9 +76,11 @@ function handleClick(id){
   width: 80%;
   margin: 0 auto;
 }
+
 .el-calendar {
   margin-bottom: 20px;
 }
+
 .date-cell {
   display: flex;
   justify-content: center;
@@ -89,13 +89,16 @@ function handleClick(id){
   width: 40px;
   height: 40px;
 }
+
 .is-selected {
   border: 1px solid #409eff;
   border-radius: 4px;
 }
+
 .date-number {
   color: #666;
 }
+
 .selected-dot {
   width: 8px;
   height: 8px;
@@ -103,18 +106,21 @@ function handleClick(id){
   border-radius: 50%;
   margin-top: 5px;
 }
+
 .event-display {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   margin: 0 75px;
 }
+
 .event-item {
   background-color: #f5f5f5;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
 }
+
 .pag {
   padding: 25px 0;
   justify-content: center;

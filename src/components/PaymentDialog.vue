@@ -33,6 +33,7 @@ const goToPurchase = () => {
   min-height: 100vh;
   background-color: #f9f9f9;
 }
+
 .prompt-box {
   background-color: #fff;
   padding: 20px;
@@ -40,16 +41,19 @@ const goToPurchase = () => {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
+
 .prompt-title {
   margin: 0 0 20px 0;
   font-size: 18px;
   color: #333;
 }
+
 .prompt-content {
   margin-bottom: 20px;
   font-size: 16px;
   color: #666;
 }
+
 .prompt-actions {
   display: flex;
   justify-content: space-around;

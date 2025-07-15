@@ -87,7 +87,7 @@ async function share() {
   })
 }
 function handleClick() {
-  
+
 }
 onBeforeMount(() => {
   handleData(scCourse)
@@ -166,7 +166,7 @@ const attachments = ref([
                 </el-rate>
               </span>
             </div>
-            <span class="comment-date">{{ new Date(comment.date ).toLocaleString('zh-CN') }}</span>
+            <span class="comment-date">{{ new Date(comment.date).toLocaleString('zh-CN') }}</span>
           </div>
           <div class="comment-content">
             <p>{{ comment.content }}</p>

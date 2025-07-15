@@ -18,6 +18,7 @@
   text-align: center;
   padding: 20px;
 }
+
 .certificate-image {
   width: 400px;
   height: 500px;
@@ -29,12 +30,14 @@
   align-items: center;
   color: #666;
 }
+
 .placeholder {
   width: 80%;
   height: 80%;
   background-color: #ccc;
   margin-bottom: 10px;
 }
+
 .download-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -44,6 +47,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .download-btn:hover {
   background-color: #0056b3;
 }

@@ -43,7 +43,8 @@ async function handleClick() {
         <el-input v-model="form.tel" type="text" maxlength="11" clearable show-word-limit />
       </el-form-item>
       <el-form-item label="问题">
-        <el-input v-model="form.content" type="textarea" maxlength="150" clearable show-word-limit :autosize="{ minRows: 1, maxRows: 15 }" />
+        <el-input v-model="form.content" type="textarea" maxlength="150" clearable show-word-limit
+          :autosize="{ minRows: 1, maxRows: 15 }" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleClick" class="btn">提交</el-button>

@@ -12,7 +12,7 @@ let user = ref(JSON.parse(sessionStorage.getItem('user')))
 <template>
   <div class="course-card">
     <div class="card-img">
-      <el-image :src="course.img" fit="cover" />
+      <el-image :src="course.img" fit="cover" style="width: 100%; height: 100%;" />
     </div>
     <div class="card-content">
       <p class="course-title">

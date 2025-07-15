@@ -4,7 +4,7 @@ import LoginPanel from '@/components/LoginPanel.vue';
 
 <template>
     <div class="page">
-        <LoginPanel class="login"/>
+        <LoginPanel class="login" />
     </div>
 </template>
 
@@ -15,6 +15,7 @@ import LoginPanel from '@/components/LoginPanel.vue';
     width: 100%;
     min-height: 100vh;
 }
+
 .login {
     position: absolute;
     top: 10vh;

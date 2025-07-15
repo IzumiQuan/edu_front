@@ -32,7 +32,9 @@ const handlePayment = () => {
     <div class="course-header">
       <span class="title">购买课程</span>
       <el-button type="text" @click="closePurchase" class="close-button">
-        <el-icon><Close /></el-icon>
+        <el-icon>
+          <Close />
+        </el-icon>
       </el-button>
     </div>
     <div class="course-info">
@@ -72,23 +74,28 @@ const handlePayment = () => {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .course-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
+
 .title {
   font-size: 18px;
   font-weight: bold;
 }
+
 .close-button {
   font-size: 20px;
 }
+
 .course-info {
   display: flex;
   margin-bottom: 20px;
 }
+
 .course-image {
   width: 100px;
   height: 100px;
@@ -98,51 +105,62 @@ const handlePayment = () => {
   justify-content: center;
   align-items: center;
 }
+
 .image-placeholder {
   width: 80%;
   height: 80%;
   background-color: #d5d5d5;
 }
+
 .course-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .course-name {
   font-size: 16px;
   margin-bottom: 10px;
 }
+
 .course-price {
   display: flex;
   align-items: center;
 }
+
 .price {
   font-size: 20px;
   font-weight: bold;
   color: #333;
   margin-right: 10px;
 }
+
 .hours {
   font-size: 14px;
   color: #666;
 }
+
 .payment-method {
   margin-bottom: 20px;
 }
+
 .method-title {
   font-size: 16px;
   margin-bottom: 10px;
 }
+
 .qr-code {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
+
 .qr-code-image {
   width: 150px;
   height: 150px;
 }
+
 .notification {
   position: relative;
   top: -10px;
@@ -157,6 +175,7 @@ const handlePayment = () => {
   align-items: center;
   font-size: 12px;
 }
+
 .payment-button {
   text-align: center;
 }

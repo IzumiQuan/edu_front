@@ -1,59 +1,59 @@
 <script setup>
 import { ref } from 'vue'
 import router from '@/router';
-function handleClick(path){
+function handleClick(path) {
     router.push(path)
 }
 
-let itemlist=ref([
+let itemlist = ref([
     {
-        text:"基本信息",
-        path:"/user/info"
-    },
-    {
-        text:"学习记录",
-        path:"/user/study"
+        text: "基本信息",
+        path: "/user/info"
     },
     {
-        text:"学习证书",
-        path:"/user/cert"
+        text: "学习记录",
+        path: "/user/study"
     },
     {
-        text:"报名记录",
-        path:"/user/enroll"
+        text: "学习证书",
+        path: "/user/cert"
     },
-     {
-        text:"我的会员",
-        path:"/user/vip"
+    {
+        text: "报名记录",
+        path: "/user/enroll"
     },
-     {
-        text:"订单管理",
-        path:"/user/order"
+    {
+        text: "我的会员",
+        path: "/user/vip"
     },
-     {
-        text:"发票管理",
-        path:"/user/bill"
+    {
+        text: "订单管理",
+        path: "/user/order"
     },
-     {
-        text:"联系我们",
-        path:"/user/contact"
+    {
+        text: "发票管理",
+        path: "/user/bill"
     },
-     {
-        text:"账号安全",
-        path:"/user/safety"
+    {
+        text: "联系我们",
+        path: "/user/contact"
     },
-     {
-        text:"系统设置",
-        path:"/user/setting"
+    {
+        text: "账号安全",
+        path: "/user/safety"
+    },
+    {
+        text: "系统设置",
+        path: "/user/setting"
     },
 ])
 </script>
 
 <template>
 
-<div class="list">
-  <div v-for="item in itemlist" class="item" @click="handleClick(item.path)">{{item.text}}</div>
-</div>
+    <div class="list">
+        <div v-for="item in itemlist" class="item" @click="handleClick(item.path)">{{ item.text }}</div>
+    </div>
 </template>
 
 <style scoped>
@@ -67,17 +67,18 @@ let itemlist=ref([
     margin: 10px 5px 10px 50px;
     padding: 25px 50px;
 }
+
 .item {
     flex: 1;
     font-size: 14px;
     text-align: center;
 }
 
-.item:hover{
+.item:hover {
     cursor: pointer;
 }
-.item:active{
+
+.item:active {
     opacity: 0.5;
 }
-
 </style>
