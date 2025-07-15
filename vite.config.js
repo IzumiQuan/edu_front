@@ -21,9 +21,7 @@ export default defineConfig({
     allowedHosts: [
       'localhost',
       '192.168.8.32',
-      '192.168.20.12',
-      '192.168.50.13',
-      '192.168.95.214',
+      '192.168.20.30',
       'http://2789ad48.r20.cpolar.top'
     ]
   }
