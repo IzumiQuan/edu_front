@@ -72,7 +72,6 @@ async function handleIdentity() {
 
 <template>
   <div class="profile-container">
-    <!-- 头像及基本信息区域 -->
     <div class="profile-header">
       <el-avatar class="avatar" :src="user.avatar"></el-avatar>
       <div class="user-info">
@@ -89,7 +88,6 @@ async function handleIdentity() {
       </div>
     </div>
 
-    <!-- 信息列表区域 -->
     <table class="info-table">
       <tbody>
         <tr>
