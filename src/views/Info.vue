@@ -245,7 +245,7 @@ async function handleIdentity() {
   padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 5px;
+  margin: 0 5px;
 }
 
 .btn:hover {
