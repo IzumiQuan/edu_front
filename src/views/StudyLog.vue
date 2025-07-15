@@ -1,6 +1,12 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
-import request from '@/utils/request.js';
+import request from '@/utils/request.js'
+let sc = ref({
+  example: {
+    name: "aaa"
+  }
+})
+let courseInfo = ref([])
 const parseTags = (tagString) => {
   try {
     return tagString ? JSON.parse(tagString) : [];
@@ -9,25 +15,23 @@ const parseTags = (tagString) => {
     return [];
   }
 }
-async function getcourseinfo(searcondition) {
-  let res = await request.post("/select/query", searcondition.value)
-  courseinfo.value = res.data.records
+async function getcourseinfo(sc) {
+  let res = await request.post("/select/query", sc.value)
+  courseInfo.value = res.data.records
+}
+
+function handleClick(id) {
+  router.push("/course/" + id)
 }
 onBeforeMount(() => {
-  getcourseinfo(searcondition)
+  getcourseinfo(sc)
 })
-let searcondition = ref({
-  example: {
-    name: "aaa"
-  }
-})
-let courseinfo = ref([])
 </script>
 
 <template>
   <div class="page">
     <div class="course">
-      <div class="course-item" v-for="course in courseinfo">
+      <div class="course-item" v-for="course in courseInfo">
         <!-- 左侧图像区域 -->
         <div class="image-container">
           {{ course.image }}
@@ -46,7 +50,7 @@ let courseinfo = ref([])
         </div>
         <!-- 右侧按钮区域 -->
         <div class="button-container">
-          <el-button class="continue-learning-btn">
+          <el-button class="continue-learning-btn" @click="handleClick(course.id)">
             继续学习
           </el-button>
         </div>
