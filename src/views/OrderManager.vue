@@ -1,10 +1,35 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
+import { ElNotification } from 'element-plus'
 import request from '@/utils/request.js';
 
 async function getOrder(sc) {
   let res = await request.post("/order/query", sc.value)
   orders.value = res.data.records
+}
+async function handleCancel(order) {
+  order.status = '已取消'
+  let resp = await request.post("/order/reset", order)
+  if (resp.code === 200) {
+    getOrder(sc)
+    ElNotification({
+      title: 'Success',
+      message: '订单已取消',
+      type: 'success',
+    })
+  }
+}
+async function handlePay(order) {
+  order.status = '已完成'
+  let resp = await request.post("/order/reset", order)
+  if (resp.code === 200) {
+    getOrder(sc)
+    ElNotification({
+      title: 'Success',
+      message: '订单已完成',
+      type: 'success',
+    })
+  }
 }
 
 onBeforeMount(() => {
@@ -13,7 +38,7 @@ onBeforeMount(() => {
 })
 let sc = ref({
   example: {
-    name: "高松灯",
+    name: "",
   }
 })
 let orders = ref([])

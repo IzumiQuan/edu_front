@@ -1,18 +1,16 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
+import { ElNotification } from 'element-plus'
 import request from '@/utils/request.js'
+let user = ref(JSON.parse(sessionStorage.getItem("user")))
 let sc = ref({
   example: {
-    name: "aaa"
+    name: ""
   }
-})
-let form = ref({
-
 })
 let courseInfo = ref([])
 let link = ref("")
 let certVisible = ref(false)
-let formVisible = ref(false)
 
 onBeforeMount(() => {
   getCourseInfo(sc)
@@ -22,12 +20,24 @@ async function getCourseInfo(sc) {
   courseInfo.value = res.data.records
 }
 
-function handleAction(course) {
-  if (course.certLink) {
+async function handleAction(course) {
+  if (course.createDate) {
     link.value = course.certLink
     certVisible.value = true
   } else {
-    formVisible.value = true
+    let condition = {
+      id: course.id,
+      createDate: new Date(),
+    }
+    let resp = await request.post("/select/reset", condition)
+    if (resp.code === 200) {
+      getCourseInfo(sc)
+      ElNotification({
+        title: 'Success',
+        message: '证书申请成功',
+        type: 'success',
+      })
+    }
   }
 }
 </script>
@@ -38,7 +48,7 @@ function handleAction(course) {
       <div>
         <div class="info-item">
           <span class="label">所属课程：</span>
-          <span class="value">{{ course.name }}</span>
+          <span class="value">{{ course.className }}</span>
         </div>
         <div class="info-item">
           <span class="label">颁发时间：</span>
@@ -47,7 +57,7 @@ function handleAction(course) {
       </div>
       <div class="button-container">
         <button class="action-btn" @click="handleAction(course)">
-          {{ course.certLink ? '查看证书' : '申请' }}
+          {{ course.createDate ? '查看证书' : '申请' }}
         </button>
       </div>
     </div>

@@ -30,7 +30,7 @@ async function handleConfirm(){
       return
     user.value.classHour -= course.value.classHour
     let resp = await resetUser(user.value)
-    if(resp.code == 200) {
+    if(resp.code === 200) {
       user.value = resp.data
       sessionStorage.setItem('user', JSON.stringify(user.value))
       PayVisible.value = false

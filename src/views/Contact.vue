@@ -10,7 +10,7 @@ let form = ref({
 async function handleClick() {
   try {
     let resp = await add(form.value)
-    if (resp.code == 200) {
+    if (resp.code === 200) {
       ElNotification({
         title: 'Success',
         message: '反馈成功',

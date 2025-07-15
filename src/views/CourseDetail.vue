@@ -45,7 +45,7 @@ async function handleMarking(sc) {
 async function handleSubmit() {
   try {
     let resp = await addMarking(form.value)
-    if (resp.code == 200) {
+    if (resp.code === 200) {
       ElNotification({
         title: 'Success',
         message: '评论发布成功',

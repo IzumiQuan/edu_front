@@ -4,7 +4,7 @@ import request from '@/utils/request.js'
 import router from '@/router'
 let sc = ref({
   example: {
-    name: "aaa"
+    name: ""
   }
 })
 let courseInfo = ref([])

@@ -9,7 +9,7 @@ let sc = ref({
 })
 async function getEvents() {
     let resp = await request.post('/enroll/query', sc.value)
-    if (resp.code == 200) {
+    if (resp.code === 200) {
         events.value = resp.data.records
     }
 }

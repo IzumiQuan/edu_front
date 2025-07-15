@@ -40,7 +40,7 @@ async function handleSubmit() {
   form.value.activity = event.value.name
   form.value.activityDate = event.value.startTime
   let resp = await request.post("enroll/add", form.value)
-  if (resp.code == 200) {
+  if (resp.code === 200) {
     ElNotification({
       title: 'Success',
       message: '报名成功',

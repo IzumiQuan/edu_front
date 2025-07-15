@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/test',//空路径重定向
+      redirect: '/login',//空路径重定向
       name: 'home',
       component: () => import('../views/Home.vue'),
       children: [
