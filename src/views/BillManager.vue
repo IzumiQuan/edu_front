@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
+import { ElNotification } from 'element-plus'
 import request from '@/utils/request.js';
 let sc = ref({
   example: {
@@ -7,9 +8,21 @@ let sc = ref({
   }
 })
 let bill = ref([])
+let list = ref([])
 async function getbill(sc) {
-  let res = await request.post("/bill/query", sc.value)
-  bill.value = res.data.records
+  let resp = await request.post("/bill/query", sc.value)
+  bill.value = resp.data.records
+}
+
+async function handleBill() {
+  list.value.forEach((id) => {
+    let bill = ref({
+      id: id,
+      status: '已开发票',
+    })
+    request.post("/bill/reset", bill.value)
+  })
+  await getbill(sc)
 }
 
 onBeforeMount(() => {
@@ -24,7 +37,7 @@ const currentTab = ref('可开发票')
 
 // 切换标签页的函数
 const changeTab = (tab) => {
-  currentTab.value = tab;
+  currentTab.value = tab
 }
 </script>
 
@@ -38,20 +51,23 @@ const changeTab = (tab) => {
       </span>
     </div>
     <div class="tab-content">
-      <div v-for="(bill, index) in bill" :key="index">
-        <div v-if="bill.status === currentTab" class="order-container">
-          <div class="check-box">
-            <el-checkbox label="" value="Value A" />
-            <div class="course-name">{{ bill.billName }}</div>
-          </div>
-          <div class="time-info">
-            <div>{{ bill.date }}</div>
-            <span>${{ bill.price }}</span>
+      <el-checkbox-group v-model="list">
+        <div v-for="(bill, index) in bill" :key="index">
+          <div v-if="bill.status === currentTab" class="order-container">
+            <div class="check-box">
+              <el-checkbox :value="bill.id">
+                <div class="course-name">{{ bill.billName }}</div>
+              </el-checkbox>
+            </div>
+            <div class="time-info">
+              <div>{{ bill.date }}</div>
+              <span>￥{{ bill.price }}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </el-checkbox-group>
       <div class="button-type" v-if="currentTab === '可开发票'"><el-button style="margin-left: auto;" type="primary"
-          @click="handlePay(bill)">申请开票</el-button></div>
+          @click="handleBill">申请开票</el-button></div>
     </div>
   </div>
 </template>
