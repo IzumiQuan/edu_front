@@ -69,7 +69,6 @@ const changeTab = (tab) => {
 .tab-nav {
   display: flex;
   border-bottom: 1px solid #ddd;
-  /* 确保导航栏固定宽度 */
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
