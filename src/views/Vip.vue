@@ -152,7 +152,7 @@ function handleCourse(course) {
 
 .course-container {
   border-top: 1px solid #e9ecef;
-  padding: 20px;
+  padding: 20px 0;
   flex: 1;
 }
 
