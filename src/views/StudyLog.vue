@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
 import request from '@/utils/request.js'
+import router from '@/router'
 let sc = ref({
   example: {
     name: "aaa"
