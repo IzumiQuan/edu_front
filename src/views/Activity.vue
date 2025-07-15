@@ -4,13 +4,10 @@ import { onBeforeMount } from 'vue';
 import { query } from '@/api/activityApi';
 import ActivityCard from '@/components/ActivityCard.vue';
 import router from '@/router';
-
 const props = defineProps({
   keyword: String
 })
-
 let totalPage = ref(1)
-
 let searchCondition = ref({
   currentPage: 1,
   pageSize: 8,
@@ -19,6 +16,7 @@ let searchCondition = ref({
     startTime: new Date(),
   },
 })
+let events = ref([])
 
 watch(() => props.keyword,
   (newKeyword) => {
@@ -26,15 +24,12 @@ watch(() => props.keyword,
     handleData()
   }
 )
-
 watch([() => searchCondition.value.currentPage], ([newVal, oldVal]) => {
   handleData()
 })
-
 watch([() => searchCondition.value.example.startTime], ([newVal, oldVal]) => {
   handleData()
 })
-
 onBeforeMount(handleData)
 
 async function handleData() {
@@ -44,7 +39,6 @@ async function handleData() {
   searchCondition.value.currentPage = resp.data.current
 }
 
-let events = ref([])
 function handleClick(id) {
   router.push("/activity/" + id)
 }
@@ -52,7 +46,6 @@ function handleClick(id) {
 
 <template>
   <div class="event-registration-container">
-    <!-- 日历部分 -->
     <el-calendar v-model="searchCondition.example.startTime">
       <template #dateCell="{ date, data }">
         <div class="date-cell" :class="{ 'is-selected': data.isSelected }">
@@ -61,7 +54,6 @@ function handleClick(id) {
         </div>
       </template>
     </el-calendar>
-    <!-- 活动展示部分 -->
     <div class="event-display" v-loading="events.length === 0">
       <ActivityCard v-for="(item, index) in events" :key="index" :activity="item" @click="handleClick(item.id)"
         class="event-item" />
