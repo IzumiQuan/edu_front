@@ -1,28 +1,33 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
 import request from '@/utils/request.js'
-import router from '@/router'
 let sc = ref({
   example: {
     name: "aaa"
   }
 })
+let form = ref({
 
+})
 let courseInfo = ref([])
+let link = ref("")
+let certVisible = ref(false)
+let formVisible = ref(false)
 
 onBeforeMount(() => {
   getCourseInfo(sc)
 })
 async function getCourseInfo(sc) {
   let res = await request.post("/select/query", sc.value)
-  courseInfo.value = res.data.records;
+  courseInfo.value = res.data.records
 }
 
 function handleAction(course) {
-  if (course.createDate) {
-    router.push()
+  if (course.certLink) {
+    link.value = course.certLink
+    certVisible.value = true
   } else {
-    router.push()
+    formVisible.value = true
   }
 }
 </script>
@@ -42,11 +47,23 @@ function handleAction(course) {
       </div>
       <div class="button-container">
         <button class="action-btn" @click="handleAction(course)">
-          {{ course.createDate ? '查看证书' : '申请' }}
+          {{ course.certLink ? '查看证书' : '申请' }}
         </button>
       </div>
     </div>
   </div>
+  <el-dialog v-model="certVisible" title="查看证书" width="20%">
+    <div class="cert">
+      <el-image :src="link" alt="证书" />
+    </div>
+    <template #footer>
+      <div style="display: flex;">
+        <el-button type="primary" @click="certVisible = false" style="margin: 0 auto; width: 150px;">
+          保存证书
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <style scoped>
