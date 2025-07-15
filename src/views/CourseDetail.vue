@@ -88,7 +88,7 @@ async function share() {
   })
 }
 function handleClick() {
-  router.push("/course/" + courseInfo.id + "/study")
+  router.push("/course/study/" + courseInfo.value.id)
 }
 onBeforeMount(() => {
   handleData(scCourse)

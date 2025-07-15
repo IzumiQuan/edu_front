@@ -27,7 +27,7 @@ const router = createRouter({
           },
         },
         {
-          path: '/course/:id/study',
+          path: '/course/study/:id',
           name: 'courseStudy',
           component: () => import('../views/CourseStudy.vue'),
           props: true,
