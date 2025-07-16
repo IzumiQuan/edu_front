@@ -18,6 +18,8 @@ let form = ref({
   sex: '男',
 })
 let showForm = ref(false)
+let showTicket = ref(false)
+let link = ref('')
 onBeforeMount(handleData)
 async function handleData() {
   let resp = await query(searchCondition.value)
@@ -46,6 +48,7 @@ async function handleSubmit() {
       message: '报名成功',
       type: 'success',
     })
+    link.value = resp.data.img
   } else {
     ElNotification({
       title: 'Error',
@@ -56,6 +59,7 @@ async function handleSubmit() {
   form.value.name = ''
   form.value.tel = ''
   showForm.value = false
+  showTicket.value = true
 }
 </script>
 
@@ -111,6 +115,18 @@ async function handleSubmit() {
       <div class="dialog-footer" style="display: flex;">
         <el-button type="primary" @click="handleSubmit" class="btn">
           报名
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
+  <el-dialog v-model="showTicket" title="参会证明" width="20%">
+    <div class="cert">
+      <el-image :src="link" alt="证明" />
+    </div>
+    <template #footer>
+      <div style="display: flex;">
+        <el-button type="primary" @click="showTicket = false" style="margin: 0 auto; width: 150px;">
+          下载
         </el-button>
       </div>
     </template>
@@ -203,5 +219,9 @@ async function handleSubmit() {
   margin: 0 auto;
   background-color: black;
   border: 0px;
+}
+
+.cert {
+  margin: 15px 25px;
 }
 </style>
