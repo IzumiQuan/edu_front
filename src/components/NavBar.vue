@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import router from '@/router';
+import router from '@/router'
 let emit = defineEmits(['message'])
 let keyword = ref('')
 function search() {

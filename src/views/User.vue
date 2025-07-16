@@ -1,5 +1,5 @@
 <script setup>
-import AsideBar from '@/components/AsideBar.vue';
+import AsideBar from '@/components/AsideBar.vue'
 </script>
 
 <template>

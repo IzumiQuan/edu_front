@@ -1,5 +1,5 @@
 <script setup>
-import LoginPanel from '@/components/LoginPanel.vue';
+import LoginPanel from '@/components/LoginPanel.vue'
 </script>
 
 <template>

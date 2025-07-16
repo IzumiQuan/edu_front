@@ -1,9 +1,9 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount } from 'vue'
 import { ElNotification } from 'element-plus'
 import { query as queryCourse } from '../api/courseApi.js'
 import { query as queryMarking, add as addMarking } from '../api/markingApi.js'
-import router from '@/router/index.js';
+import router from '@/router/index.js'
 const props = defineProps({
   id: { type: Number, required: true }
 })

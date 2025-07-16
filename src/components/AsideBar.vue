@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import router from '@/router';
+import router from '@/router'
 function handleClick(path) {
     router.push(path)
 }

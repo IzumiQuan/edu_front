@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue'
 import { ElNotification } from 'element-plus'
-import request from '@/utils/request.js';
+import request from '@/utils/request.js'
 
 async function getOrder(sc) {
   let res = await request.post("/order/query", sc.value)

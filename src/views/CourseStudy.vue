@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import CourseCard from "../components/CourseCard.vue";
-import { query as queryCourse } from "../api/courseApi.js";
-import { query as queryComment } from "../api/markingApi.js";
-import { reset as resetUser } from "../api/userApi.js";
-import router from "@/router";
+import { ref, computed, onMounted } from "vue"
+import CourseCard from "../components/CourseCard.vue"
+import { query as queryCourse } from "../api/courseApi.js"
+import { query as queryComment } from "../api/markingApi.js"
+import { reset as resetUser } from "../api/userApi.js"
+import router from "@/router"
 const props = defineProps({
   id: { type: Number, required: true }
 })
@@ -67,7 +67,6 @@ onMounted(() => {
   handleCourseList(scCourses)
   handleCourse()
   getComment({})
-  
 })
 </script>
 

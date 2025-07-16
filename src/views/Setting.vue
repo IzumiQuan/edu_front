@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { ElNotification } from 'element-plus'
-import { remove } from '@/api/userApi';
-import router from '@/router';
+import { remove } from '@/api/userApi'
+import router from '@/router'
 
 let user = ref(JSON.parse(sessionStorage.getItem('user')))
 
 const settingItems = ref([
   { label: '协议规则' },
   { label: '隐私政策' },
-  { label: '平台规则' }
-]);
+  { label: '平台规则' },
+])
 
 async function handleClick() {
   let resp = await remove(user.value.id)
