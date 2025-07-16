@@ -129,4 +129,8 @@ async function handleAction(course) {
 .action-btn:hover {
   background-color: #333;
 }
+
+.cert {
+  margin: 15px 25px;
+}
 </style>
