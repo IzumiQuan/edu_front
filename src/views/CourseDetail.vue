@@ -150,7 +150,7 @@ const attachments = ref([
       </div>
     </div>
   </div>
-  <el-tabs v-model="activeName" @tab-click="handleClick" class="tabs">
+  <el-tabs v-model="activeName" class="tabs">
     <el-tab-pane label="课程简介" name="first">
       <div>{{ courseInfo.intro }}</div>
     </el-tab-pane>
