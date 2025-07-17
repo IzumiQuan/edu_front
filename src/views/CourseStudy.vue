@@ -60,6 +60,10 @@ function handleClick(course) {
   router.push("/course/" + course.id)
 }
 
+function handleBack() {
+  router.back()
+}
+
 onMounted(() => {
   if (new Date(user.value.vipEndTime) > new Date()) {
     tipVisible.value = false
@@ -80,17 +84,17 @@ onMounted(() => {
         Your browser does not support the video tag.
       </video>
       <!-- 提示框 -->
-      <el-dialog v-model="tipVisible" title="提示" width="20%">
+      <el-dialog v-model="tipVisible" title="提示" width="20%" :before-close="handleBack">
         <span>此课程为付费课程，请购买课程后继续学习</span>
         <template #footer>
           <span class="footer">
-            <el-button @click="tipVisible = false" style="margin-left: auto;">取消学习</el-button>
+            <el-button @click="handleBack" style="margin-left: auto;">取消学习</el-button>
             <el-button type="primary" @click="handlePayment" style="margin-right: auto;">前往购买</el-button>
           </span>
         </template>
       </el-dialog>
 
-      <el-dialog v-model="PayVisible" title="购买课程" width="30%">
+      <el-dialog v-model="PayVisible" title="购买课程" width="30%" :before-close="handleClose">
         <div class="container">
           <div class="course">
             <el-image :src="course.img" style="width: 120px; height: 90px;"/>
