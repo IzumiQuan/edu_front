@@ -50,7 +50,6 @@ let itemlist = ref([
 </script>
 
 <template>
-
     <div class="list">
         <div v-for="item in itemlist" class="item" @click="handleClick(item.path)">{{ item.text }}</div>
     </div>

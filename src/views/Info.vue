@@ -121,7 +121,7 @@ async function handleIdentity() {
         <el-input v-model="info.name" type="text" maxlength="5" clearable show-word-limit />
       </el-form-item>
       <el-form-item label="手机号码">
-        <el-input v-model="info.tel" type="text" maxlength="11" clearable show-word-limit />
+        <el-input v-model="info.tel" type="text" minlength="11" maxlength="11" clearable show-word-limit />
       </el-form-item>
       <el-form-item label="性别">
         <el-radio-group v-model="info.sex">
@@ -152,7 +152,7 @@ async function handleIdentity() {
   <el-dialog v-model="identityVisible" width="500">
     <el-form :model="identity" class="form">
       <el-form-item label="身份证号">
-        <el-input v-model="identity.idCard" type="text" maxlength="18" clearable show-word-limit
+        <el-input v-model="identity.idCard" type="text" minlength="18" maxlength="18" clearable show-word-limit
           :disabled="!editable" />
       </el-form-item>
       <el-form-item label="真实姓名">

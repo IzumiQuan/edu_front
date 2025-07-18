@@ -71,7 +71,7 @@ class Request {
 
 // 创建请求实例
 const request = new Request({
-  baseURL: 'http://192.168.8.32:8080/api', // 从环境变量获取基础URL
+  baseURL: 'http://localhost:8080/api', // 从环境变量获取基础URL
   timeout: 10000, // 超时时间
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'

@@ -44,10 +44,10 @@ async function handleClick() {
   <div class="container">
     <el-form v-model="pwd" label-width="auto" style="max-width: 500px" class="form">
       <el-form-item label="原密码">
-        <el-input v-model="pwd.old" type="password" maxlength="20" clearable show-password />
+        <el-input v-model="pwd.old" type="password" minlength="7" maxlength="20" clearable show-password />
       </el-form-item>
       <el-form-item label="新密码">
-        <el-input v-model="pwd.new" type="password" maxlength="20" clearable show-password />
+        <el-input v-model="pwd.new" type="password" minlength="7" maxlength="20" clearable show-password />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleClick" class="btn">保存</el-button>
